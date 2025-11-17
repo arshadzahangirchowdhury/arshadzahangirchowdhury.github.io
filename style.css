@@ -321,7 +321,7 @@ hr {
 @media (max-width: 768px) {
   .sideblock {
     flex-direction: column;
-    text-align: center;
+    text-align: justify;
   }
 
   .sideblock img {
