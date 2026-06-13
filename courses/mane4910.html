@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MANE 4910: Fluid Dynamics Laboratory | M Arshad Zahangir Chowdhury</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#research">Research</a></li>
+    <li><a href="../index.html#teaching">Teaching</a></li>
+    <li><a href="../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<div class="container course-header">
+  <h1>MANE 4910: Fluid Dynamics Laboratory</h1>
+  <p class="course-sub">Rensselaer Polytechnic Institute &middot; Department of Mechanical, Aerospace, and Nuclear Engineering &middot; 2 credit hours</p>
+  <p class="course-instructor">Instructor: M Arshad Zahangir Chowdhury</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  MANE 4910: Fluid Dynamics Laboratory &mdash; M Arshad Zahangir Chowdhury, Rensselaer Polytechnic Institute &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<!-- Course-specific menu -->
+<nav class="course-nav">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#outcomes">Learning Outcomes</a></li>
+    <li><a href="#experiments">Experiments</a></li>
+  </ul>
+</nav>
+
+<div id="overview" class="container course-section">
+  <div class="ctitle">Overview</div>
+  <p><strong>Course Description:</strong> This course is designed to provide aeronautical engineering students with the hands-on experience of laboratory testing needed by engineers and researchers in the field. The course concentrates on experimental techniques associated with subsonic wind tunnel testing, including wind tunnel characterization; pressure, force, and aerodynamic coefficient measurements; and hot-wire anemometry to measure velocities. All hardware experiments are conducted in a 2'&times;2' closed-return wind tunnel.</p>
+  <p><strong>Course Goals:</strong> Train students on the basic principles of operation of a low-speed wind tunnel; provide experience and knowledge of experimental instrumentation used to perform velocity, pressure, and direct force measurements; and correlate experimental observations to theory previously learned.</p>
+  <p><strong>Assessments:</strong> Lab reports, pre-lab assignments and quizzes, and a final exam.</p>
+  <p><strong>Offerings:</strong> I have taught this laboratory 3 times: Fall '24, Spring '25, and Spring '26 (ongoing).</p>
+  <p><strong>Prerequisites:</strong> MANE-4070 Aerodynamics.</p>
+</div>
+
+<div id="outcomes" class="container course-section">
+  <div class="ctitle">Student Learning Outcomes</div>
+  <p>Students who successfully complete this course will be able to demonstrate:</p>
+  <ul>
+    <li>an ability to evaluate and quantify aerodynamic properties;</li>
+    <li>knowledge in data processing and data analysis;</li>
+    <li>an ability to write technical reports.</li>
+  </ul>
+</div>
+
+<div id="experiments" class="container course-section">
+  <div class="ctitle">Experiment Modules</div>
+  <p>The course is built around six hardware-based wind tunnel experiments, developing progressive understanding of the tunnel and experimental methods over the semester (subject to change).</p>
+  <table class="course-schedule">
+    <thead>
+      <tr><th>Experiment Module</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Introduction, lab safety, and report writing guidelines</td></tr>
+      <tr><td>Low-speed wind tunnel characteristics and operations</td></tr>
+      <tr><td>Pressure distributions and wake measurements on a 2-D circular cylinder</td></tr>
+      <tr><td>Pressure distributions and wake measurements on 2-D airfoils</td></tr>
+      <tr><td>Aerodynamic forces and moments on airfoils, and flow visualization</td></tr>
+      <tr><td>Drag of shapes and surfaces (bluff bodies)</td></tr>
+      <tr><td>Full model experiment: aerodynamic characteristics of a vehicle of your choice</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      function positionCourseNav() {
+        var navbar = document.querySelector('.navbar');
+        var header = document.querySelector('.course-header');
+        var courseNav = document.querySelector('.course-nav');
+        header.style.top = navbar.offsetHeight + 'px';
+        courseNav.style.top = (navbar.offsetHeight + header.offsetHeight) + 'px';
+        var stackHeight = navbar.offsetHeight + header.offsetHeight + courseNav.offsetHeight;
+        document.querySelectorAll('.course-section').forEach(function(section) {
+          section.style.scrollMarginTop = (stackHeight + 10) + 'px';
+        });
+      }
+      positionCourseNav();
+      window.addEventListener('resize', positionCourseNav);
+    </script>
+
+  </body>
+</html>

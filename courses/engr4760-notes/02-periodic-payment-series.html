@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Periodic Payment Series | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-rule-of-72">Rule of 72</a>
+  <a href="#sec-uniform-payment-series-annuity">Uniform Payment Series (Annuity)</a>
+  <a href="#sec-perpetuity">Perpetuity</a>
+  <a href="#sec-linear-arithmetic-gradients">Linear (Arithmetic) Gradients</a>
+  <a href="#sec-geometric-gradients">Geometric Gradients</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+
+<div class="container course-header">
+  <h1>Periodic Payment Series</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 2 &middot; Park 2.4&ndash;2.5</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Periodic Payment Series &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-rule-of-72" class="container course-section">
+  <div class="ctitle">Rule of 72</div>
+  <p>How long does it take an investment to double? Divide 72 by the interest rate: at 2%, about 36 periods; at 8%, about 9. The exact answer comes from our doubling condition $2P = P(1+i)^N$:</p>
+  <p>$$N = \frac{\ln 2}{\ln(1+i)}$$</p>
+  <p>At 2% the exact value is 35 years against the rule's 36. The rule is much faster to compute in your head, and for most practical use cases the results are not far off. That trade is worth knowing: a quick estimate you can actually do beats an exact formula you won't.</p>
+</div>
+
+<div id="sec-uniform-payment-series-annuity" class="container course-section">
+  <div class="ctitle">Uniform Payment Series (Annuity)</div>
+  <p>A series of <em>consecutive, equal, end-of-period</em> cash flows (all three conditions must hold) is a uniform payment series, also called an <strong>annuity</strong>. Tuition loans, insurance premiums, mortgage payments, retirement savings: all annuities. To compare any of them against a lump sum you must move everything to the same point in time. Otherwise you are comparing apples with oranges.</p>
+  <p><strong>Where the formulas come from.</strong> For present worth, discount each payment back individually and sum: $P = \frac{A}{1+i} + \frac{A}{(1+i)^2} + \cdots + \frac{A}{(1+i)^N}$, a geometric series with a closed form. For future worth, march each payment forward instead: the first payment compounds $N-1$ times, the next $N-2$, and the last one lands exactly at year $N$ and doesn't move at all. (Equivalently, take $P$ and push the whole thing forward: $F = P(1+i)^N$ links the two formulas, so deriving one gives you the other for free.)</p>
+  <p>$$P = A\left[\frac{(1+i)^N - 1}{i(1+i)^N}\right] = A\,(P/A, i, N) \qquad\quad F = A\left[\frac{(1+i)^N - 1}{i}\right] = A\,(F/A, i, N)$$</p>
+  <p>Four factors cover every annuity problem: two pairs, each pair the same problem just inverted.</p>
+  <table class="course-schedule">
+    <thead>
+      <tr><th>Factor</th><th>Find / Given</th><th>Name</th><th>Typical use</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>$(P/A, i, N)$</td><td>$P$ given $A$</td><td>Uniform series present worth</td><td>Value today of a payment stream</td></tr>
+      <tr><td>$(A/P, i, N)$</td><td>$A$ given $P$</td><td>Capital recovery</td><td>Loan &amp; mortgage payments</td></tr>
+      <tr><td>$(F/A, i, N)$</td><td>$F$ given $A$</td><td>Compound amount</td><td>What regular deposits grow into</td></tr>
+      <tr><td>$(A/F, i, N)$</td><td>$A$ given $F$</td><td>Sinking fund</td><td>Deposit needed to hit a target</td></tr>
+    </tbody>
+  </table>
+  <p>("Sinking" because you put money aside for a specific purpose, like a retirement account shooting for a particular accumulated value.)</p>
+  <p><strong>The one-period-back trap.</strong> The $(P/A)$ formula computes worth <em>one period before the first payment</em>. If the first cash flow lands at the end of year 1, the "present" is year 0. When a payment occurs at time 0 itself, or a loan has a grace period, do one extra single-payment step &mdash; march the value forward or back one period &mdash; before applying the annuity factor.</p>
+  <p><em>Example (capital recovery):</em> repay a \$40,000 loan over 5 equal annual payments at 6%. $A = 40000\,(A/P, 6\%, 5) = 40000 \times 0.2374 \approx \$9{,}496$ per year. With a one-year grace period before payments begin, the bank doesn't just lose a year. First grow the principal one period, $P' = 40000(1.06) = \$42{,}400$, then apply the same factor to $P'$: $A \approx \$10{,}066$.</p>
+  <p><em>Example (sinking fund):</em> target \$150,000 in 8 years at 6%. $A = 150000\,(A/F, 6\%, 8) = 150000 \times 0.1010 \approx \$15{,}155$ per year. Notice the deposits sum to less than the target; the gap is pure interest doing its work.</p>
+  <p><em>Example (the trap, in action):</em> deposits of \$2,000 at the <em>beginning</em> of each of years 1&ndash;5 (i.e., at $t = 0, 1, 2, 3, 4$), with $i = 5\%$; what is the worth at the end of year 5? The $(F/A)$ formula assumes payments at period ends, so pretend the clock started one period earlier (a dummy period): the five payments form an ordinary annuity ending at $t=4$, worth $F' = 2000\,(F/A, 5\%, 5) = 2000 \times 5.5256 \approx \$11{,}051$ there. Then march forward the one remaining year: $F_5 = 11051 \times 1.05 \approx \$11{,}604$. Set the problem up so the formula's assumptions hold, then patch the difference with single-payment steps.</p>
+  <p><strong>Rates and periods must match.</strong> The compounding period of $i$ and the payment period of $A$ must be the same unit. Financing a \$30,000 car: option one, 0% financing over 60 months, trivially $30000/60 = \$500$/month. Option two, a \$3,000 rebate but financed at 6% per year: convert to $6\%/12 = 0.5\%$ <em>per month</em>, then $A = 27000\,(A/P, 0.5\%, 60) = 27000 \times 0.01933 \approx \$522$/month. The rebate loses, but you only see it after putting both options in the same monthly terms. (And a lump sum versus a payment stream, the retirement and lottery dilemmas from Topic 1, is settled the same way: convert the stream with $(P/A)$ and compare present worths directly.)</p>
+</div>
+
+<div id="sec-perpetuity" class="container course-section">
+  <div class="ctitle">Perpetuity</div>
+  <p>An annuity that runs forever. Take the limit of $(P/A)$ as $N \to \infty$ and the bracket collapses to $1/i$:</p>
+  <p>$$P = \frac{A}{i} \qquad\Longleftrightarrow\qquad A = P\,i$$</p>
+  <p>Interpretation: $A = Pi$ is the amount you can withdraw every period, forever, without ever touching the principal. You can also see it as a limit in the tables: plot the annuity payment a fixed deposit supports against $N$ for any interest rate, and the curves all flatten out, saturating toward $Pi$ as the horizon grows. Higher $i$, higher sustainable withdrawal. The classic story: Peter Minuit's \$24 for Manhattan in 1626. Deposited at a constant 8%, that \$24 yields \$25.92 after a year; withdraw \$1.92, the \$24 stays intact, and the cycle repeats forever. \$1.92 a year went a lot further in the 1600s than it does now (Manhattan today is worth over a trillion dollars), so there is, as always, a decision to be made.</p>
+</div>
+
+<div id="sec-linear-arithmetic-gradients" class="container course-section">
+  <div class="ctitle">Linear (Arithmetic) Gradients</div>
+  <p>Payments need not be uniform. If each successive payment is offset by a constant amount $G$, positive or negative, the series has a <strong>linear gradient</strong>. The strict gradient series starts at <em>zero</em> at the end of period 1, with the first increment $G$ arriving at the end of period 2 (then $2G$, $3G$, &hellip;). Keep that picture in mind; it is how the model is set up, and forgetting it is the most common error.</p>
+  <p>The trick for real problems is <strong>decomposition</strong>: split the cash flow into a uniform baseline $A$ plus a pure gradient $G$, convert each with its own factor, and add:</p>
+  <p>$$P = A\,(P/A, i, N) + G\,(P/G, i, N)$$</p>
+  <p>There are also $(A/G)$, to convert a gradient into its equivalent annuity, and $F$-versions; if a table lacks $(F/G)$, chain factors instead, e.g. $(F/G) = (F/A)(A/G)$.</p>
+  <p><em>Example (equivalent annuity):</em> you deposit \$900 at the end of year 1 and, thanks to salary raises, increase the deposit by \$200 each year for 5 years at 6%. What uniform annual deposit is equivalent? $A_{eq} = 900 + 200\,(A/G, 6\%, 5) = 900 + 200 \times 1.8836 \approx \$1{,}277$ per year. Converting a climbing series into one flat number makes it directly comparable to any other plan.</p>
+  <p><em>Example:</em> a machine's maintenance is estimated at \$800 the first year, rising \$150 per year over a 5-year service life, with $i = 8\%$. How much should be set aside now? Decompose: baseline \$800 annuity plus a \$150 gradient.</p>
+  <p>$$P = 800\,(P/A, 8\%, 5) + 150\,(P/G, 8\%, 5) = 800(3.9927) + 150(7.372) \approx \$4{,}300$$</p>
+  <p>Decreasing series (a deposit that shrinks every year) work the same way with the gradient term <em>subtracted</em> &mdash; draw the cash flow diagram and the sign takes care of itself.</p>
+</div>
+
+<div id="sec-geometric-gradients" class="container course-section">
+  <div class="ctitle">Geometric Gradients</div>
+  <p>When the change is a constant <em>rate</em> $g$ rather than a constant amount (each payment is $(1+g)$ times the last), the gradient is geometric, and an exponent enters the cash flows just as it did with compound interest. With first payment $A_1$:</p>
+  <p>$$P = A_1\left[\frac{1 - (1+g)^N(1+i)^{-N}}{i - g}\right] \;(i \neq g), \qquad P = \frac{N A_1}{1+i} \;(i = g)$$</p>
+  <p>A convenient shortcut defines a modified rate $g' = \frac{1+i}{1+g} - 1 \approx i - g$ for small rates, which lets you reuse the ordinary $(P/A, g', N)$ tables. This is the natural model for anything that grows proportionally: a salary that rises a few percent a year (so your savings can too: start smaller and let the growth snowball toward the target), or a cost of living that inflates against a fixed pension.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens</div>
+  <p><strong>Investing.</strong> This topic <em>is</em> fixed income and more. A bond is an annuity (coupons) plus a single payment (face value); price it with $(P/A)$ and $(P/F)$. A mortgage is capital recovery. And the geometric-gradient perpetuity is the famous Gordon growth model: a dividend growing at rate $g$ discounted at $i$ is worth $P = D_1/(i-g)$. It is the same $i \neq g$ formula with $N \to \infty$. Notice how the valuation explodes as $g$ approaches $i$: that sensitivity is why small changes in growth assumptions move price targets so violently.</p>
+  <p><strong>Engineering.</strong> Maintenance costs that climb as equipment ages are linear gradients; energy costs that inflate are geometric ones. When budgeting a machine's service life, decompose the cost stream into baseline + gradient and bring it to present worth. That single number is what the machine actually costs to keep, and it is the honest input to a replace-or-repair decision.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, &ldquo;Periodic Payment Series,&rdquo; <em>ENGR 4760 Engineering Economics &mdash; Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/02-periodic-payment-series.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

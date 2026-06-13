@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MANE 4740: Thermal and Fluids Engineering Laboratory | M Arshad Zahangir Chowdhury</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#research">Research</a></li>
+    <li><a href="../index.html#teaching">Teaching</a></li>
+    <li><a href="../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<div class="container course-header">
+  <h1>MANE 4740: Thermal and Fluids Engineering Laboratory</h1>
+  <p class="course-sub">Rensselaer Polytechnic Institute &middot; Department of Mechanical, Aerospace, and Nuclear Engineering &middot; 2 credit hours</p>
+  <p class="course-instructor">Instructor: M Arshad Zahangir Chowdhury</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  MANE 4740: Thermal and Fluids Engineering Laboratory &mdash; M Arshad Zahangir Chowdhury, Rensselaer Polytechnic Institute &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<!-- Course-specific menu -->
+<nav class="course-nav">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#outcomes">Learning Outcomes</a></li>
+    <li><a href="#experiments">Experiments</a></li>
+  </ul>
+</nav>
+
+<div id="overview" class="container course-section">
+  <div class="ctitle">Overview</div>
+  <p><strong>Course Description:</strong> This laboratory course offers a culminating experimental experience in the field of thermal and fluids engineering. The theoretical background gained in previous courses is consolidated and expanded by hands-on experiments and analysis of thermal and fluids systems. The course familiarizes students with a variety of thermodynamic, heat transfer, and fluid flow phenomena in the context of the operation of major pieces of equipment, exploring both fundamental concepts and practical, applied ideas.</p>
+  <p><strong>Course Objectives:</strong> Demonstrate thermodynamic, heat transfer, and fluid flow principles; integrate theory and practice through the operation of experiments and the acquisition and analysis of experimental data; familiarize students with complex, realistic systems and the interactions among thermodynamics, heat transfer, and fluid flow; develop abilities to analyze thermal and fluids systems, including analysis and decision making in the face of experimental uncertainty; and exercise technical communication skills in a variety of modes.</p>
+  <p><strong>Assessments:</strong> Prelab assignments, homework, formal laboratory reports, a student presentation, peer assessment, and online quizzes.</p>
+  <p><strong>Offerings:</strong> I have taught this laboratory once: Fall '23.</p>
+</div>
+
+<div id="outcomes" class="container course-section">
+  <div class="ctitle">Student Learning Outcomes</div>
+  <p>Students who successfully complete this course should:</p>
+  <ul>
+    <li>be able to integrate theory and practice through the operation of experiments and through the acquisition and use of experimental data with uncertainty;</li>
+    <li>be able to perform experiments in the topic areas and report the results in a professional manner;</li>
+    <li>become familiar with complex, realistic systems and the interactions among thermodynamics, heat transfer, and fluid flow;</li>
+    <li>learn new concepts and techniques in the topic areas.</li>
+  </ul>
+</div>
+
+<div id="experiments" class="container course-section">
+  <div class="ctitle">Experiment Modules</div>
+  <p>Students work in teams through four experiments, each spanning experiment preparation, data collection, uncertainty analysis, a studio-style discussion of results, and a formal engineering report.</p>
+  <table class="course-schedule">
+    <thead>
+      <tr><th>Experiment Module</th><th>Concepts</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Hydraulic flow loop</td><td>Instrument calibration, friction factors</td></tr>
+      <tr><td>Wind tunnel</td><td>Field concepts including velocity field, hydraulic boundary layers, transition to turbulence, heat transfer coefficients, multimode heat transfer</td></tr>
+      <tr><td>Air conditioning system</td><td>Refrigeration cycles, psychrometrics, heat transfer, energy balances, refrigerant properties</td></tr>
+      <tr><td>Student-designed experiment</td><td>Teams design their own experiment, submit an experimental plan, and present their findings &mdash; using any of the lab setups or other available equipment</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      function positionCourseNav() {
+        var navbar = document.querySelector('.navbar');
+        var header = document.querySelector('.course-header');
+        var courseNav = document.querySelector('.course-nav');
+        header.style.top = navbar.offsetHeight + 'px';
+        courseNav.style.top = (navbar.offsetHeight + header.offsetHeight) + 'px';
+        var stackHeight = navbar.offsetHeight + header.offsetHeight + courseNav.offsetHeight;
+        document.querySelectorAll('.course-section').forEach(function(section) {
+          section.style.scrollMarginTop = (stackHeight + 10) + 'px';
+        });
+      }
+      positionCourseNav();
+      window.addEventListener('resize', positionCourseNav);
+    </script>
+
+  </body>
+</html>

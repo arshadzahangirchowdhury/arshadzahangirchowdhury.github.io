@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Sensitivity, Break-Even, Scenario, and Risk Analysis | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-sensitivity">Sensitivity Analysis</a>
+  <a href="#sec-breakeven">Break-Even Analysis</a>
+  <a href="#sec-scenario">Scenario Analysis</a>
+  <a href="#sec-risk">Risk and Simulation</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Sensitivity, Break-Even, Scenario, and Risk Analysis</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 10 &middot; Park 11.1–11.5</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Sensitivity, Break-Even, Scenario, and Risk Analysis &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-sensitivity" class="container course-section">
+  <div class="ctitle">Sensitivity Analysis</div>
+  <p>Sensitivity analysis identifies which project variables have the greatest impact on profitability (NPW, IRR, etc.). You vary key inputs (unit price, demand, costs, growth rate, salvage value) by a percentage (±10%, ±20%) and observe how the output (project worth) changes. Plot the results: steep slopes mean high sensitivity (risky), flat slopes mean low sensitivity (robust).</p>
+  <p><strong>Why it matters:</strong> In a real project, some uncertainties matter far more than others. If demand is ±5% away but unit price error is ±2%, you should focus forecasting effort on demand accuracy. Sensitivity analysis reveals which variables warrant your attention.</p>
+  <p><strong>How to execute:</strong> Build a spreadsheet model. Parameterize key inputs (unit price, demand, variable cost, fixed cost, etc.). Create a sensitivity table: vary one input by percentage increments (e.g., -20%, -10%, 0%, +10%, +20%), recalculate project NPW (or IRR) for each, and plot the results against the input variation. Use Excel's built-in sensitivity or data table features, or use Solver's sensitivity report.</p>
+</div>
+
+<div id="sec-breakeven" class="container course-section">
+  <div class="ctitle">Break-Even Analysis</div>
+  <p>Break-even analysis finds the value of a variable where a project's worth equals zero (NPW = 0, IRR = MARR, or AEC equals an alternative's AEC). Use this to compare mutually exclusive alternatives or to determine the minimum demand needed for a project to be viable.</p>
+  <p><strong>Example: Choose between power sources.</strong> A diesel generator costs \$30,000 upfront, \$5/shift operating cost. An LPG system costs \$25,000, \$3/shift. At what number of shifts per year does one become cheaper than the other?</p>
+  <p>Write the annual equivalent cost for each as a function of shifts (m):
+  $$\text{AEC}_{\text{diesel}} = 30,000(A/P, i, n) + 5m$$
+  $$\text{AEC}_{\text{LPG}} = 25,000(A/P, i, n) + 3m$$
+  </p>
+  <p>Set them equal and solve for m. Plot both curves; the intersection is the break-even point. To the left, LPG is cheaper; to the right, diesel wins.</p>
+  <p><strong>Excel's Goal Seek tool:</strong> Set up a cell with your project's NPW formula, then use Data → What-If Analysis → Goal Seek to find the input value that makes NPW = 0 or achieves any target. This is faster than manual solving for complex models.</p>
+</div>
+
+<div id="sec-scenario" class="container course-section">
+  <div class="ctitle">Scenario Analysis</div>
+  <p>Scenario analysis evaluates a project under multiple futures (worst case, best case, most likely case) with assigned probabilities. Unlike sensitivity (one variable varies), scenarios capture realistic combinations of conditions that might occur together.</p>
+  <p><strong>Expected value and variance:</strong> For a discrete random variable (the project outcome under different scenarios):</p>
+  <p>$$E[X] = \sum_{i=1}^{n} x_i \cdot p_i$$
+  $$\text{Var}(X) = E[X^2] - (E[X])^2 = \sum_{i=1}^{n} x_i^2 \cdot p_i - (E[X])^2$$
+  $$\text{StdDev}(X) = \sqrt{\text{Var}(X)}$$</p>
+  <p><strong>Example:</strong> A project has three scenarios:
+  \begin{align}
+  \text{Worst case: } &\text{NPW} = \$5,000 \text{ at } 20\% \text{ probability}\\
+  \text{Most likely: } &\text{NPW} = \$8,000 \text{ at } 60\% \text{ probability}\\
+  \text{Best case: } &\text{NPW} = \$10,000 \text{ at } 20\% \text{ probability}
+  \end{align}</p>
+  <p>Expected NPW: $E = 5,000(0.20) + 8,000(0.60) + 10,000(0.20) = 7,800$</p>
+  <p>Variance: $V = 5,000^2(0.20) + 8,000^2(0.60) + 10,000^2(0.20) - 7,800^2 \approx 2,560,000$</p>
+  <p>Standard deviation: $\sigma \approx 1,600$</p>
+  <p>On average, expect \$7,800 NPW; actual results will typically fall within ±\$1,600 of that.</p>
+</div>
+
+<div id="sec-risk" class="container course-section">
+  <div class="ctitle">Risk and Simulation</div>
+  <p>Risk analysis uses simulation (often Monte Carlo) to model input uncertainty as probability distributions, then propagates those uncertainties through the project model to estimate output distributions (range of possible NPW values and their likelihoods).</p>
+  <p><strong>Key ideas:</strong> Major uncertainties (demand, cost growth, inflation, project life) are modeled as random variables following normal, uniform, or triangular distributions. The project model runs thousands of times, each with randomly sampled inputs, yielding a distribution of outcomes.</p>
+  <p><strong>Practical use:</strong> Excel's NORM.DIST function computes the cumulative probability that a normally distributed value falls below a threshold. If expected NPW is \$7,800 with standard deviation \$1,600:</p>
+  <p>$$P(\text{NPW} < 0) = \text{NORM.DIST}(0, 7800, 1600, \text{TRUE}) \approx 0.0099 \approx 1\%$$</p>
+  <p>There's a ~1% chance the project fails (NPW ≤ 0). This guides risk tolerance: high NPW with low standard deviation = low risk; low NPW with high standard deviation = high risk.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens: When to Use Each Technique</div>
+  <p><strong>Sensitivity analysis:</strong> Use early in project evaluation to identify critical variables. Which uncertainties matter most? Focus forecasting and risk mitigation on those. Does a ±10% error in one variable swing the project from profitable to unprofitable? That's a red flag.</p>
+  <p><strong>Break-even analysis:</strong> Use to answer "how much demand do we need?" or "at what operating rate does this technology beat that one?" It sets a minimum threshold. If forecasts suggest demand will exceed break-even by a wide margin, the project is robust. If forecasts are close to break-even, risk is high.</p>
+  <p><strong>Scenario analysis:</strong> Use when you can bound the range of possibilities (worst, likely, best). Assign probabilities based on expert judgment or historical data. Compute expected value and variance to summarize risk in two numbers. For most projects, this suffices.</p>
+  <p><strong>Simulation:</strong> Use for complex projects with many interdependent uncertainties or when you have detailed historical data on input distributions. The output is richer (full distribution of outcomes) but requires more model development. For engineering economics, scenario analysis is often sufficient unless management demands a full risk profile.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Sensitivity, Break-Even, Scenario, and Risk Analysis," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/10-sensitivity-breakeven-scenario-risk.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

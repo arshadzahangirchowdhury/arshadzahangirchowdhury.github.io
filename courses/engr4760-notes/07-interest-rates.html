@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Interest Rates, APR, and Effective Annual Rate | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-nominal-vs-effective">Nominal vs. Effective Rate</a>
+  <a href="#sec-apr-and-periodic-rate">APR and the Periodic Rate</a>
+  <a href="#sec-computing-effective-rate">Computing the Effective Annual Rate</a>
+  <a href="#sec-comparing-alternatives">Comparing Alternatives</a>
+  <a href="#sec-continuous-compounding">Continuous Compounding</a>
+  <a href="#sec-computing-payments">Computing Loan Payments</a>
+  <a href="#sec-practice-lens">Key Mistakes to Avoid</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Interest Rates: APR, Nominal, and Effective</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 7 &middot; Park 3.1–3.4</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Interest Rates, APR, and Effective Annual Rate &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-nominal-vs-effective" class="container course-section">
+  <div class="ctitle">Nominal vs. Effective Rate</div>
+  <p>When you see an advertisement for a loan or savings account, the rate quoted is almost always the nominal annual percentage rate (APR), not the true rate you actually pay or earn. The APR is a legal requirement in most lending disclosures, but it ignores a crucial detail: how often interest compounds.</p>
+  <p>Suppose you deposit \$1,000 at a nominal annual rate of 12%. If that 12% compounds only once per year, you have \$1,120 at year end. If it compounds monthly, each month you earn 1% (which is 12% divided by 12), and that monthly interest itself earns interest in following months. After a year, you have $1,000 \times (1.01)^{12} \approx 1,126.83$. Same APR, but you actually earned 12.68% because of compounding.</p>
+  <p>The rate you actually receive is called the effective annual rate (EAR) or effective annual percentage rate (EAPR). It accounts for the effect of compounding within the year. Mortgages, credit cards, investment accounts: if you want to compare the true cost or return, always convert to the effective rate.</p>
+</div>
+
+<div id="sec-apr-and-periodic-rate" class="container course-section">
+  <div class="ctitle">APR and the Periodic Rate</div>
+  <p>The APR is defined as the periodic rate times the number of periods per year:</p>
+  <p>$$\text{APR} = r_{\text{periodic}} \times m$$</p>
+  <p>where $m$ is the number of compounding periods per year (12 for monthly, 4 for quarterly, 365 for daily, etc.).</p>
+  <p>Rearranging, the periodic rate is simply:</p>
+  <p>$$r_{\text{periodic}} = \frac{\text{APR}}{m}$$</p>
+  <p><strong>Example:</strong> A loan quoted at 16.9% APR with monthly compounding. The monthly rate is $\frac{16.9\%}{12} = 1.408\%$ per month. If you borrow \$3,500 for 24 months, your monthly payment is found using the $(A/P, 1.408\%, 24)$ factor—the same machinery from periodic payment series, just applied at the monthly scale.</p>
+  <p>The key caution: never divide the effective annual rate by the number of periods to find the periodic rate. The effective rate already accounts for compounding; dividing it would double-count that effect.</p>
+</div>
+
+<div id="sec-computing-effective-rate" class="container course-section">
+  <div class="ctitle">Computing the Effective Annual Rate</div>
+  <p>The effective annual rate is found by compounding the periodic rate over all periods in a year:</p>
+  <p>$$i_{\text{eff}} = \left( 1 + \frac{\text{APR}}{m} \right)^m - 1$$</p>
+  <p>This formula tells you: take the periodic rate (APR divided by $m$), add it to 1, raise to the $m$-th power (one full year of compounding), and subtract 1 to get the effective rate as a decimal.</p>
+  <p><strong>Example: Monthly compounding.</strong> APR of 18% compounded monthly:</p>
+  <p>$$i_{\text{eff}} = \left( 1 + \frac{0.18}{12} \right)^{12} - 1 = (1.015)^{12} - 1 \approx 0.1956 = 19.56\%$$</p>
+  <p>Notice the 1.56% difference. That extra percentage is "interest on interest"—the compounding effect.</p>
+  <p><strong>Example: Quarterly compounding.</strong> APR of 12% compounded quarterly:</p>
+  <p>$$i_{\text{eff}} = \left( 1 + \frac{0.12}{4} \right)^4 - 1 = (1.03)^4 - 1 \approx 0.1255 = 12.55\%$$</p>
+  <p>Fewer compounding periods mean less "interest on interest," so the effective rate is closer to the APR. Monthly compounding at 12% APR yields 12.68%; quarterly yields 12.55%; annual yields exactly 12%.</p>
+</div>
+
+<div id="sec-comparing-alternatives" class="container course-section">
+  <div class="ctitle">Comparing Investment and Loan Alternatives</div>
+  <p>When choosing between savings accounts, loans, or investments with different compounding schedules, always convert all quotes to the effective annual rate before comparing.</p>
+  <p><strong>Example:</strong> You have two savings accounts. Account A offers 5.25% APR compounded daily (365 compounding periods). Account B offers 5.30% APR compounded semiannually (2 periods).</p>
+  <p>Account A: $i_{\text{eff}} = \left(1 + \frac{0.0525}{365}\right)^{365} - 1 \approx 5.39\%$</p>
+  <p>Account B: $i_{\text{eff}} = \left(1 + \frac{0.0530}{2}\right)^2 - 1 \approx 5.37\%$</p>
+  <p>Account A wins, even though its quoted rate (5.25%) is lower. Daily compounding more than makes up the difference. Without computing effective rates, you might pick the wrong account.</p>
+</div>
+
+<div id="sec-continuous-compounding" class="container course-section">
+  <div class="ctitle">Continuous Compounding</div>
+  <p>In some financial models, interest is compounded infinitely often—that is, every infinitesimal instant. This is called continuous compounding. As $m \to \infty$, the formula becomes:</p>
+  <p>$$i_{\text{eff}} = e^r - 1$$</p>
+  <p>where $r$ is the nominal rate and $e \approx 2.71828$ is Euler's number.</p>
+  <p><strong>Example:</strong> Nominal rate of 12% compounded continuously:</p>
+  <p>$$i_{\text{eff}} = e^{0.12} - 1 \approx 1.1275 - 1 = 0.1275 = 12.75\%$$</p>
+  <p>For practical engineering problems, continuous compounding rarely appears unless you're modeling natural processes or advanced financial derivatives. But it shows up in textbooks and exams, so know the formula.</p>
+</div>
+
+<div id="sec-computing-payments" class="container course-section">
+  <div class="ctitle">Computing Loan Payments with APR</div>
+  <p>When a lender quotes a nominal rate (APR) with monthly compounding, you don't convert to the effective annual rate. Instead, you work at the monthly scale throughout:</p>
+  <p><strong>Example:</strong> A computer costs \$3,500. The store offers financing at 16.9% APR, monthly compounding, over 24 months. What is the monthly payment?</p>
+  <ol>
+    <li>Compute the monthly rate: $r_{\text{monthly}} = \frac{16.9\%}{12} = 1.408\%$</li>
+    <li>Number of periods: $n = 24$ months</li>
+    <li>Use the standard payment formula (or Excel's PMT function) with these monthly values. In Excel: <code>=PMT(0.01408, 24, -3500)</code></li>
+    <li>Result: monthly payment $\approx \$168.74$</li>
+  </ol>
+  <p>The key insight: all calculations (present worth, future worth, periodic payments) use the periodic rate that matches your cash flow frequency, not the effective annual rate.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens: Key Mistakes to Avoid</div>
+  <p><strong>Mistake 1: Dividing the effective rate by compounding periods.</strong> You'll sometimes see someone compute effective annual rate correctly, then divide it by 12 to get a "monthly rate." Don't do this. The effective rate already includes compounding; dividing it would double-count the effect. Always use: periodic rate = APR / number of periods.</p>
+  <p><strong>Mistake 2: Mixing compounding frequencies in cash flow analysis.</strong> When discounting a loan with monthly payments at a stated 6% APR (monthly compounding), use the monthly rate ($0.5\%$) throughout your present-worth calculations. If your company specifies a required return of 8% effective annual, and a project has quarterly cash flows, first convert that 8% to a quarterly rate, then discount the quarterly flows. Mismatching frequencies corrupts your entire analysis.</p>
+  <p><strong>Mistake 3: Ignoring the compounding assumption when comparing alternatives.</strong> Two savings accounts advertise 5.25% and 5.30% APR. You might think the second is obviously better. But the first compounds daily and the second compounds semiannually. Computing effective rates reveals the first account is actually superior ($5.39\%$ vs. $5.37\%$). Quote rates without context are nearly meaningless.</p>
+  <p><strong>In engineering practice:</strong> When you encounter a nominal rate in a loan document, equipment lease, or bond prospectus, your first step is always to identify the compounding frequency and compute the periodic rate that matches your cash flow intervals. Only use the effective annual rate when comparing unrelated investments or reporting a company's cost of capital. Real discounting happens at the periodic level.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Interest Rates, APR, and Effective Annual Rate," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/07-interest-rates.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

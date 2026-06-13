@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Depreciation and Income Tax | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-what-is-depreciation">What is Depreciation</a>
+  <a href="#sec-key-definitions">Key Definitions</a>
+  <a href="#sec-depreciation-methods">Depreciation Methods</a>
+  <a href="#sec-macrs-tax-depreciation">MACRS & Tax Depreciation</a>
+  <a href="#sec-taxable-income">Taxable Income & After-Tax Cash Flow</a>
+  <a href="#sec-disposal-gains">Asset Disposal & Capital Gains</a>
+  <a href="#sec-loans-and-interest">Loans and Interest Taxation</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Depreciation and Income Tax</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 8 &middot; Park Ch. 10</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Depreciation and Income Tax &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-what-is-depreciation" class="container course-section">
+  <div class="ctitle">What is Depreciation</div>
+  <p>Depreciation accounts for the decrease in value of a physical asset over time or through use. A car purchased for \$30,000 loses value immediately; by year one it may be worth \$25,000. That \$5,000 loss is depreciation. Machinery, equipment, buildings—all depreciate except land.</p>
+  <p>Crucially, depreciation is <strong>not a cash expense</strong>. You don't write a check for depreciation. Yet it reduces taxable income, saving you real tax dollars. This tax shield—the reduction in income taxes due to depreciation—is why depreciation matters in engineering economics. The goal is to model depreciation in a way that reflects how assets actually wear out, so your tax calculations and project evaluations are realistic.</p>
+</div>
+
+<div id="sec-key-definitions" class="container course-section">
+  <div class="ctitle">Key Definitions</div>
+  <p><strong>Cost basis:</strong> The original purchase price plus any costs to acquire and install the asset (transportation, labor, setup). If you trade in an old asset, the cost basis of the new one may be reduced by the trade-in value.</p>
+  <p><strong>Book value:</strong> Cost basis minus cumulative depreciation. After year one, if a \$50,000 machine has \$5,000 in depreciation, its book value is \$45,000. Book value appears on the company's balance sheet.</p>
+  <p><strong>Salvage (or residual) value:</strong> What the asset is worth when sold or retired. In book depreciation, salvage value is often estimated. In tax depreciation (MACRS), it is always zero—the asset depreciates to nothing.</p>
+  <p><strong>Market value:</strong> What the asset actually sells for in the market, which may differ sharply from book value.</p>
+</div>
+
+<div id="sec-depreciation-methods" class="container course-section">
+  <div class="ctitle">Depreciation Methods for Book Records</div>
+  <p><strong>Straight-line depreciation:</strong> Equal depreciation each year over the asset's useful life. If a \$100,000 asset has a 10-year life and \$10,000 salvage value, annual depreciation is $\frac{100,000 - 10,000}{10} = 9,000$ per year. Simple and uniform.</p>
+  <p><strong>Declining balance depreciation:</strong> A constant fraction of the <em>remaining</em> book value depreciates each year. Early depreciation is higher, later years lower—more realistic for equipment that loses value fastest when new. The double-declining balance method depreciates at twice the straight-line rate applied to the declining book value.</p>
+  <p>These book methods are used for financial reporting. For tax purposes, the U.S. mandates a different approach: MACRS (Modified Accelerated Cost Recovery System).</p>
+</div>
+
+<div id="sec-macrs-tax-depreciation" class="container course-section">
+  <div class="ctitle">MACRS and Tax Depreciation</div>
+  <p>The IRS specifies how to depreciate assets for tax purposes using MACRS. Every asset falls into one of six personal property classes (3-year, 5-year, 7-year, etc.) or real property classes (residential: 27.5 years; non-residential: 39 years). Land cannot be depreciated.</p>
+  <p><strong>Key rule: half-year convention.</strong> Regardless of when you buy an asset during the year, you assume it was placed in service on July 1st (midway). You take half the normal depreciation in year one and half in the final year. This applies even if you sell the asset early.</p>
+  <p><strong>Example:</strong> A \$20,000 computer (5-year property) purchased anytime in 2025. By tax law, it gets these percentages: 20%, 32%, 19.2%, 11.52%, 11.52%, 5.76% over six tax years (half-year in first and last). Multiply each percentage by \$20,000 to get annual depreciation. Notice: the percentages sum to 100%, and year-one depreciation is half the "normal" first-year amount.</p>
+  <p>MACRS tables are published by the IRS and are mandatory for tax filings. You cannot arbitrarily choose the depreciation method or life; the law is specific.</p>
+</div>
+
+<div id="sec-taxable-income" class="container course-section">
+  <div class="ctitle">Computing Taxable Income and After-Tax Cash Flow</div>
+  <p>To find your real economic profit (after-tax cash flow), you must separate the income statement from the cash flow statement.</p>
+  <p><strong>Taxable income:</strong> Gross revenue minus all operating expenses, minus depreciation:</p>
+  <p>$$\text{Taxable Income} = \text{Revenue} - \text{Operating Costs} - \text{Depreciation}$$</p>
+  <p>Depreciation reduces taxable income even though it's not a cash cost. This is the tax shield.</p>
+  <p><strong>Income tax:</strong> Tax rate times taxable income. Example: if taxable income is \$50,000 and the tax rate is 40%, you pay \$20,000 in taxes.</p>
+  <p><strong>Net income (or profit):</strong> Taxable income minus income tax.</p>
+  <p><strong>After-tax cash flow from operations:</strong> Net income plus depreciation (add back the non-cash expense):</p>
+  <p>$$\text{Operating Cash Flow} = \text{Net Income} + \text{Depreciation}$$</p>
+  <p>Why add back depreciation? Because it reduced your taxes but didn't leave your bank account. Adding it back gives the true cash your operations generated.</p>
+  <p><strong>Example:</strong> Revenue \$50,000, operating costs \$20,000, depreciation \$4,000. Taxable income is \$26,000. At 40% tax rate, you pay \$10,400 in taxes. Net income is \$15,600. Operating cash flow is \$15,600 + \$4,000 = \$19,600. The depreciation saved you \$1,600 in taxes (40% × \$4,000) while adding nothing to your cash cost.</p>
+</div>
+
+<div id="sec-disposal-gains" class="container course-section">
+  <div class="ctitle">Asset Disposal and Capital Gains</div>
+  <p>When you sell an asset, you may realize a gain or loss with tax consequences:</p>
+  <ul>
+    <li><strong>Book value loss:</strong> If sale price &lt; book value, you recognize a loss (reduces taxable income).</li>
+    <li><strong>Recapture of depreciation:</strong> If sale price is between book value and original cost, you "recapture" the depreciation deduction. This is taxed as ordinary income.</li>
+    <li><strong>Capital gain:</strong> If sale price &gt; original cost, the excess is a capital gain (usually taxed differently than ordinary income, often at a lower rate).</li>
+  </ul>
+  <p><strong>Example:</strong> Asset cost \$100, has depreciated to book value \$70. You sell for \$90. The gain is \$20. Of this, \$30 (the depreciation) is recaptured as ordinary income and taxed at your ordinary rate. The remaining \$20 (\$90 - \$70 book value) or viewed differently, the gain \$20 (\$90 - \$70) is the amount above book value, which may qualify for capital gains treatment—check current tax law.</p>
+  <p>For land (which doesn't depreciate), any gain above original cost is pure capital appreciation.</p>
+</div>
+
+<div id="sec-loans-and-interest" class="container course-section">
+  <div class="ctitle">Taxation of Loans and Interest</div>
+  <p>Interest paid on a business loan is <strong>tax deductible</strong> as an operating expense. Principal repayment is not deductible (you borrowed that money, so it's not income earned).</p>
+  <p>When setting up loan calculations, use Excel's IPMT and PPMT functions to separate interest and principal:</p>
+  <ul>
+    <li><code>IPMT(rate, period, nper, pv)</code> returns the interest portion of a payment.</li>
+    <li><code>PPMT(rate, period, nper, pv)</code> returns the principal portion.</li>
+  </ul>
+  <p><strong>Example:</strong> A \$100,000 loan at 10% annual rate for 5 years has an annual payment of \$26,380. In year one, interest might be \$10,000 and principal \$16,380. In year five, interest is only \$2,587 and principal \$23,793. Use IPMT for the interest amount (tax deductible), PPMT for principal (not tax relevant).</p>
+</div>
+
+<div id="sec-working-capital" class="container course-section">
+  <div class="ctitle">Working Capital</div>
+  <p>Working capital is the cash set aside to fund day-to-day operations: inventory, vendor deposits, lease security, payroll float. You invest it upfront (cash outflow) and recover it at the end of the project (cash inflow).</p>
+  <p>Working capital is <strong>not depreciated</strong>. It's not subject to wear and tear; you get it back intact. There are no tax consequences on recovery—you put in \$25,000, take out \$25,000, no gain or loss.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens: Building an After-Tax Cash Flow Model</div>
+  <p><strong>Structure:</strong> Create two tables: one for the income statement (revenues, expenses, depreciation, taxes) and one for the cash flow statement (operating cash, investment, financing, working capital recovery). They are connected but not identical.</p>
+  <p><strong>Order of operations:</strong> (1) Calculate depreciation using MACRS percentages and cost basis. (2) Compute taxable income: revenue minus all cash expenses minus depreciation. (3) Apply tax rate to get income tax. (4) Net income = taxable income minus tax. (5) Operating cash flow = net income plus depreciation. (6) Subtract any capital investments, add back working capital recovery, account for loan principal repayments (which are financing, not operating). (7) Sum all to get net cash flow for the year.</p>
+  <p><strong>Common pitfall:</strong> Forgetting that depreciation is <em>not</em> subtracted again in the cash flow. Depreciation reduces your tax bill, but you add it back because no cash left your pocket. Also, do not depreciate working capital or land.</p>
+  <p><strong>Engineering application:</strong> When evaluating a capital project (new equipment, facility expansion, etc.), always compute after-tax cash flows, not just before-tax. A project that looks marginal on gross profit may be attractive once you account for depreciation tax shields. Conversely, high depreciation early on defers taxes, improving cash flow in years 1–3, but you must repay those deferred taxes later as the asset's depreciation shrinks.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Depreciation and Income Tax," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/08-depreciation-and-income-tax.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MANE 4961: Machine Learning for Engineering | M Arshad Zahangir Chowdhury</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#research">Research</a></li>
+    <li><a href="../index.html#teaching">Teaching</a></li>
+    <li><a href="../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<div class="container course-header">
+  <h1>MANE 4961: Machine Learning for Engineering</h1>
+  <p class="course-sub">Rensselaer Polytechnic Institute &middot; Department of Mechanical, Aerospace, and Nuclear Engineering &middot; 3 credit hours</p>
+  <p class="course-instructor">Instructor: M Arshad Zahangir Chowdhury</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  MANE 4961: Machine Learning for Engineering &mdash; M Arshad Zahangir Chowdhury, Rensselaer Polytechnic Institute &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<!-- Course-specific menu -->
+<nav class="course-nav">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#outcomes">Learning Outcomes</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+  </ul>
+</nav>
+
+<div id="overview" class="container course-section">
+  <div class="ctitle">Overview</div>
+  <p><strong>Course Description:</strong> The course focuses on applications and implementation of machine learning methods. Mathematical and theoretical bases of ML models are introduced. Concepts in machine learning are used for classification and regression towards the prediction of performance characteristics of engineering systems.</p>
+  <p><strong>Assessments:</strong> Homework, in-class assignments, in-class exams, and a final project.</p>
+  <p><strong>Offerings:</strong> I designed and launched this course and have offered it 4 times: Spring '23, Spring '24, Spring '25, and Fall '25.</p>
+  <p><strong>Prerequisites:</strong> MANE 2110 or permission of instructor.</p>
+  <h4>Optional Texts</h4>
+  <ul>
+    <li>Aur&eacute;lien G&eacute;ron, <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems</em></li>
+    <li>Ian Goodfellow, Yoshua Bengio, and Aaron Courville, <em>Deep Learning</em></li>
+    <li>Steven L. Brunton and J. Nathan Kutz, <em>Data-Driven Science and Engineering: Machine Learning, Dynamical Systems, and Control</em></li>
+  </ul>
+</div>
+
+<div id="outcomes" class="container course-section">
+  <div class="ctitle">Student Learning Outcomes</div>
+  <p>Students who finish this course in a satisfactory manner will be able to demonstrate:</p>
+  <ul>
+    <li>an ability to identify, formulate, and solve engineering problems using ML;</li>
+    <li>an ability to interpret ML models using multiple techniques;</li>
+    <li>an ability to handle and wrangle signals, images, and descriptive data for model building;</li>
+    <li>an ability to code, build, scale, and manage ML engineering projects;</li>
+    <li>an ability to articulate major findings of ML methods and results;</li>
+    <li>an ability to integrate ML methods into a research problem.</li>
+  </ul>
+</div>
+
+<div id="schedule" class="container course-section">
+  <div class="ctitle">Topics &amp; Schedule</div>
+  <p>The course covers four broad areas:</p>
+  <ol>
+    <li><strong>Basics:</strong> learning, features, ML challenges, model building, ML terms (hyperparameters, loss functions, train-test-validation, regularization), error measures, metrics, end-to-end project design, Python packages, multi-variate regression, multi-class vs. multi-label classification.</li>
+    <li><strong>Supervised learning:</strong> kNN, MLP/ANN, logistic regression classifiers, SVM, CNNs, CART and ensemble methods.</li>
+    <li><strong>Unsupervised learning:</strong> k-means, SVD, PCA, dimensionality reduction, data visualization.</li>
+    <li><strong>Contemporary special topics</strong> of interest in AI/ML research as needed.</li>
+  </ol>
+  <p>Lectures follow the sequence of topics below (subject to change).</p>
+  <table class="course-schedule">
+    <thead>
+      <tr><th>Topic</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Introduction to machine learning</td></tr>
+      <tr><td>Features, targets, scalers, vectors, matrices, tensors, and norms</td></tr>
+      <tr><td>Learning types</td></tr>
+      <tr><td>Learning challenges</td></tr>
+      <tr><td>Machine learning project design</td></tr>
+      <tr><td>Linear models, gradient descent</td></tr>
+      <tr><td>Polynomial and logistic regression, learning curves, bias-variance, regularization</td></tr>
+      <tr><td>Logistic regression and towards neural networks</td></tr>
+      <tr><td>Multinomial logistic regression, multi-class and multi-label classification, and artificial neurons</td></tr>
+      <tr><td>Training neural networks for classification problems; matrix algebra and backpropagation</td></tr>
+      <tr><td>Deep neural networks</td></tr>
+      <tr><td>Convolutional neural networks</td></tr>
+      <tr><td>Support vector machines</td></tr>
+      <tr><td>Unsupervised learning, singular value decomposition, principal component analysis, t-SNE</td></tr>
+      <tr><td>Decision trees, random forest, and ensembles</td></tr>
+      <tr><td>Recurrent neural networks</td></tr>
+      <tr><td>Special topics in AI/ML</td></tr>
+      <tr><td>Project discussions, presentations, and review</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      function positionCourseNav() {
+        var navbar = document.querySelector('.navbar');
+        var header = document.querySelector('.course-header');
+        var courseNav = document.querySelector('.course-nav');
+        header.style.top = navbar.offsetHeight + 'px';
+        courseNav.style.top = (navbar.offsetHeight + header.offsetHeight) + 'px';
+        var stackHeight = navbar.offsetHeight + header.offsetHeight + courseNav.offsetHeight;
+        document.querySelectorAll('.course-section').forEach(function(section) {
+          section.style.scrollMarginTop = (stackHeight + 10) + 'px';
+        });
+      }
+      positionCourseNav();
+      window.addEventListener('resize', positionCourseNav);
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Composite Cash Flows | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-what-makes-a-cash-flow-composite">What Makes a Cash Flow Composite</a>
+  <a href="#sec-two-ways-to-solve-brute-force-vs-grouping">Brute Force vs. Grouping</a>
+  <a href="#sec-balancing-unknowns">Balancing Unknowns</a>
+  <a href="#sec-the-missing-payment-trick">The Missing-Payment Trick</a>
+  <a href="#sec-skipped-periods-effective-rates">Skipped Periods &amp; Effective Rates</a>
+  <a href="#sec-doing-it-in-a-spreadsheet">Doing It in a Spreadsheet</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Composite Cash Flows</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 3 &middot; Park 2.6&ndash;2.7</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Composite Cash Flows &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-what-makes-a-cash-flow-composite" class="container course-section">
+  <div class="ctitle">What Makes a Cash Flow Composite</div>
+  <p>Before this topic, go back and review every formula from Topic 2. Real-world cash flows are rarely a clean single annuity or a single gradient. They are <strong>composites</strong>: a stretch of \$200 payments, then a few years at \$400, then a one-time \$600, perhaps with a gradient buried inside. The whole skill here is recognizing the familiar patterns inside the mess and breaking the problem back down into the formulas you already know.</p>
+  <p>Two reminders that trip people up, both carried over from Topic 2. A linear gradient's effect starts at the <em>end of year two</em>, so it reads as $0G, 1G, 2G, \ldots$ A geometric series runs $A_1, A_1(1+g), A_1(1+g)^2, \ldots$ Keep those alignments straight and the decomposition falls into place.</p>
+</div>
+
+<div id="sec-two-ways-to-solve-brute-force-vs-grouping" class="container course-section">
+  <div class="ctitle">Two Ways to Solve: Brute Force vs. Grouping</div>
+  <p><strong>Brute force.</strong> Move every single cash flow to the reference point on its own. Each payment gets discounted with a single-payment factor: the year-1 amount back one period, the year-2 amount back two, and so on. With a calculator beside you, it is just a long column of $(P/F)$ conversions that you sum at the end. It takes longer, but it is the approach least likely to confuse you, and in this course time is rarely the constraint.</p>
+  <p><strong>Grouping.</strong> Spot the sub-patterns and convert each group with one annuity factor instead of payment-by-payment. Say years 1&ndash;3 hold \$200 each. Use $(P/A, i, 3)$ on that group, but remember the $(P/A)$ habit: it lands the value <em>one period before the first payment</em>, so here it gives the worth at time 0 directly. A group sitting later in the timeline (say \$400 across years 5&ndash;7) converts with $(P/A)$ to a value at the start of that block, and then you slide that single number back to time 0 with one $(P/F)$ step. A lone payment, like a \$600 at year 8, is just one $(P/F, i, 8)$. Convert each group, sum the handful of results, done.</p>
+  <p>The two methods give the same answer. Brute force trades effort for safety; grouping trades a little setup thinking for far fewer calculations. Pick whichever you trust more on the day.</p>
+</div>
+
+<div id="sec-balancing-unknowns" class="container course-section">
+  <div class="ctitle">Balancing Unknowns</div>
+  <p>A common variant gives you the deposits but asks for the withdrawals (or vice versa). The unlock is always the same: <em>bring both sides to the same point in time and set them equal.</em> Until they sit at one common date you are comparing apples with oranges; once they do, a single equation pops out and you solve for the unknown.</p>
+  <p><em>Example.</em> You make 4 annual deposits of \$2,000 during college at 5%, then withdraw an equal amount $A$ for 4 years afterward. What is $A$? Convert the deposits to a value at the end of year 4 with $(F/A, 5\%, 4)$; convert the withdrawals back to that same date with $(P/A, 5\%, 4)$; set them equal and solve. You get about \$2,431 per year. (You could instead bring both streams to time 0 with present-worth factors. Same answer, your choice of meeting point.)</p>
+</div>
+
+<div id="sec-the-missing-payment-trick" class="container course-section">
+  <div class="ctitle">The Missing-Payment Trick</div>
+  <p>Sometimes a series is regular except for one gap: payments every year, but nothing in year 9. The clean move is to <strong>add the missing payment and subtract it at the same instant.</strong> Adding and removing equal amounts at the same point in time changes nothing about the cash flow, but it restores a complete pattern you can hit with one annuity factor, plus a single correction term.</p>
+  <p><em>Example.</em> Outflows of \$500 every year for 12 years at 6%, except year 9 is skipped. Pretend the \$500 is there: $P = 500\,(P/A, 6\%, 12)$ treats it as a full 12-year annuity. Then subtract the phantom year-9 payment, discounted on its own: $-\,500\,(P/F, 6\%, 9)$. The two terms together give the true present worth. The same trick handles a missing <em>gradient</em> step: insert the value that completes the gradient, then subtract it back.</p>
+</div>
+
+<div id="sec-skipped-periods-effective-rates" class="container course-section">
+  <div class="ctitle">Skipped Periods &amp; Effective Rates</div>
+  <p>What if payments happen <em>every other year</em>? Rather than fight the gaps, change the clock. Moving across two ordinary periods multiplies value by $(1+i)^2$, so define an equivalent rate over the longer step:</p>
+  <p>$$i_{eff} = (1+i)^2 - 1$$</p>
+  <p>At 5% annual, $i_{eff} = (1.05)^2 - 1 = 0.1025$, or 10.25% per two-year period. Now the gaps vanish: with the new rate, the every-other-year payments are just a plain annuity. This idea generalizes to any regular skip, and it is the same reasoning behind converting a nominal annual rate into a monthly one, only run in the other direction.</p>
+  <p><em>Example.</em> A \$20,000 loan repaid every other year at 5% annual. Re-express at 10.25% per two-year period and apply $(A/P, 10.25\%, N)$ over the number of actual payments. Treating the biennial schedule as a clean annuity under the effective rate gives a payment of roughly \$4,625.</p>
+</div>
+
+<div id="sec-doing-it-in-a-spreadsheet" class="container course-section">
+  <div class="ctitle">Doing It in a Spreadsheet</div>
+  <p>Every factor in this course has a spreadsheet twin, and once a problem gets long, the spreadsheet is faster and less error-prone than table lookups. The core five:</p>
+  <table class="course-schedule">
+    <thead>
+      <tr><th>You want</th><th>Function</th><th>Replaces</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Present worth</td><td><code>PV(rate, nper, pmt, [fv])</code></td><td>$(P/A)$ and $(P/F)$</td></tr>
+      <tr><td>Future worth</td><td><code>FV(rate, nper, pmt, [pv])</code></td><td>$(F/A)$ and $(F/P)$</td></tr>
+      <tr><td>Periodic payment</td><td><code>PMT(rate, nper, pv, [fv])</code></td><td>$(A/P)$ and $(A/F)$</td></tr>
+      <tr><td>Interest rate</td><td><code>RATE(nper, pmt, pv, [fv])</code></td><td>solving for $i$</td></tr>
+      <tr><td>Number of periods</td><td><code>NPER(rate, pmt, pv, [fv])</code></td><td>solving for $N$</td></tr>
+    </tbody>
+  </table>
+  <p>You never have to use these unless a problem asks, but they are worth knowing. Watch the sign convention: money out is negative, money in is positive, the same up-arrow / down-arrow rule from your cash flow diagrams, now enforced by the software.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens</div>
+  <p><strong>Investing.</strong> Real portfolios <em>are</em> composite cash flows: a bond ladder pays staggered coupons, a rental throws off rising rent against a lumpy roof replacement, a startup stake is years of nothing then one exit. Valuing any of them is exactly this decomposition: group the regular streams, treat the one-offs as single payments, discount everything to today, and add. The brute-force discounted-cash-flow spreadsheet a lot of analysts live in is precisely the $(P/F)$-on-every-row method, just automated.</p>
+  <p><strong>Engineering.</strong> A project's life is a composite: upfront capital, a maintenance gradient, periodic overhauls every few years, a salvage value at the end. The effective-rate trick is the clean way to fold in overhauls that recur on their own cycle, and the missing-payment trick handles a year the line is down for retooling. Reduce the whole messy timeline to one present worth and competing designs become directly comparable.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, &ldquo;Composite Cash Flows,&rdquo; <em>ENGR 4760 Engineering Economics &mdash; Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/03-composite-cash-flows.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

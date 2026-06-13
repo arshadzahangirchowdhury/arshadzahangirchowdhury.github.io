@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Benefit-Cost Analysis | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-why-bc">Why Benefit-Cost Analysis</a>
+  <a href="#sec-stakeholders">Users and Sponsors</a>
+  <a href="#sec-bc-ratio">The Benefit-Cost Ratio</a>
+  <a href="#sec-measuring-benefits">Measuring Hard-to-Quantify Benefits</a>
+  <a href="#sec-incremental">Incremental Analysis</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Benefit-Cost Analysis</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 11 &middot; Park 8.1–8.4</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Benefit-Cost Analysis &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-why-bc" class="container course-section">
+  <div class="ctitle">Why Benefit-Cost Analysis</div>
+  <p>Benefit-cost (BC) analysis evaluates public and not-for-profit projects where outcomes extend beyond financial return to shareholders. A new highway reduces travel time, improves safety, and stimulates economic growth—benefits to society that markets don't automatically price. Regulatory changes (emission limits, water quality standards, vaccine requirements) affect public welfare in ways that demand systematic evaluation.</p>
+  <p>The core question: Do the total benefits to society justify the costs? For private projects, this reduces to "does profit exceed investment?" For public projects, you must monetize intangible benefits (human life, scenic beauty, clean air) so they can be weighed against costs fairly.</p>
+</div>
+
+<div id="sec-stakeholders" class="container course-section">
+  <div class="ctitle">Identifying Users and Sponsors</div>
+  <p>A project affects multiple parties:</p>
+  <ul>
+    <li><strong>Users:</strong> Benefit from the project. A new bridge shortens commutes; its users save time. Value their benefits in dollars.</li>
+    <li><strong>Sponsors:</strong> Bear the cost. The government funds the bridge; sponsors are taxpayers. Measure their costs in present or annual worth.</li>
+  </ul>
+  <p>The BC ratio compares total user benefits against sponsor costs:</p>
+  <p>$$\text{BC ratio} = \frac{B}{I + C'}$$</p>
+  <p>where $B$ = present worth of user benefits, $I$ = initial sponsor investment, $C'$ = annual sponsor operating/maintenance cost (in present worth terms).</p>
+  <p>If BC > 1, benefits exceed costs—the project is worthwhile. If BC < 1, reject it.</p>
+</div>
+
+<div id="sec-bc-ratio" class="container course-section">
+  <div class="ctitle">Computing the Benefit-Cost Ratio</div>
+  <p>Convert all benefits and costs to a common time basis (present worth or annual worth), using an appropriate discount rate (often the government's borrowing rate or a mandated social discount rate).</p>
+  <p><strong>Example: Railroad project.</strong> Initial cost \$90 million. Saves 1,000 commuters 1 hour/day at \$25/hour value. Over 50 years at 6% discount rate:</p>
+  <p>Annual benefit: $1,000 \times 1 \text{ hour} \times \$25/\text{hour} \times 365 = \$9.125 \text{ million}$</p>
+  <p>Convert to present worth (50 years, 6% rate):
+  $$B = 9.125 \times (P/A, 6\%, 50) \approx 9.125 \times 15.76 \approx 143.8 \text{ million}$$</p>
+  <p>$$\text{BC ratio} = \frac{143.8}{90} \approx 1.60$$</p>
+  <p>Since BC > 1, the project is justified by user benefits relative to sponsor cost.</p>
+</div>
+
+<div id="sec-measuring-benefits" class="container course-section">
+  <div class="ctitle">Measuring Hard-to-Quantify Benefits</div>
+  <p>Not all benefits have obvious prices. Three common approaches:</p>
+  <p><strong>1. Willingness to pay (revealed preference):</strong> Observe what people actually pay for a benefit. If a safety feature costs \$5,000 extra and buyers choose it, revealed preference suggests they value safety at least \$5,000. Wage premiums for risky jobs reveal how much workers demand to accept risk—the difference between a safe and a risky job's salary indicates the shadow value of occupational safety.</p>
+  <p><strong>2. Statistical value of life (SVL):</strong> If a risky job pays \$2,600/year more for a 0.001 (1-in-1,000) higher annual death risk, then:</p>
+  <p>$$\text{SVL} = \frac{\text{Wage premium}}{\text{Risk increase}} = \frac{\$2,600}{0.001} = \$2.6 \text{ million}$$</p>
+  <p>This "shadow price" lets you value mortality reductions from safety regulations. If a regulation prevents 10 deaths, the benefit is $10 \times \$2.6M = \$26M$.</p>
+  <p><strong>3. Expert judgment and benefit transfer:</strong> Use studies of similar projects or regulatory impact analyses to assign values. Estimates for travel time savings, pollution reduction, or recreation access come from research, surveys, or regulatory guidance (EPA often publishes benefit valuations for environmental improvements).</p>
+</div>
+
+<div id="sec-incremental" class="container course-section">
+  <div class="ctitle">Incremental Analysis for Mutually Exclusive Alternatives</div>
+  <p>If all alternatives have BC > 1, don't automatically choose the one with the highest BC ratio. Instead, rank alternatives by cost (lowest first) and compare them pairwise using <strong>incremental BC analysis</strong>:</p>
+  <p>$$\Delta \text{BC} = \frac{\Delta B}{\Delta I + \Delta C'}$$</p>
+  <p>If $\Delta \text{BC} > 1$ (moving from a cheaper to a more expensive option), the higher cost alternative is justified. If $\Delta \text{BC} < 1$, stick with the cheaper option.</p>
+  <p><strong>Example:</strong> Two bridge designs have:</p>
+  <ul>
+    <li>Design A: Cost \$50M, Benefits \$80M, BC = 1.6</li>
+    <li>Design B: Cost \$60M, Benefits \$95M, BC = 1.58</li>
+  </ul>
+  <p>B has slightly lower BC, but compare incrementally: $\Delta B = 15M$, $\Delta C = 10M$, so $\Delta \text{BC} = 1.5 > 1$. Design B's extra benefits justify its extra cost.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens: Translating Public Value to Private Terms</div>
+  <p>The core skill is converting intangible public benefits into dollar equivalents. A new law bans lead pipes; benefits include reduced childhood lead poisoning. What's the value? Use epidemiological research to estimate prevented illnesses and hospitalizations, then apply unit costs (average cost of treating lead poisoning). Add averted productivity losses (kids with lower IQ earn less over lifetimes). Economists call this approach <strong>cost-benefit analysis</strong>—you monetize both sides to compare apples to apples.</p>
+  <p><strong>Common pitfalls:</strong> Assigning zero value to benefits simply because they're hard to measure (ignores real societal welfare); using inflated or speculative benefit numbers (erodes credibility); double-counting benefits (if you value reduced mortality via SVL, don't also add productivity gains for the same prevented deaths). Transparency matters: document your benefit assumptions so decision-makers can judge whether they trust your estimates.</p>
+  <p><strong>For engineers:</strong> You'll apply BC analysis to infrastructure projects, environmental compliance, safety regulations. Your role is to quantify engineering consequences (system reliability, capital costs, operating costs) accurately so economists and decision-makers can then assign social values and judge whether a project serves the public interest.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Benefit-Cost Analysis," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/11-benefit-cost-analysis.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

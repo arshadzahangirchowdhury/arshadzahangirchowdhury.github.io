@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Portfolio Analysis | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-portfolio-problem">The Portfolio Problem</a>
+  <a href="#sec-constraints">Types of Constraints</a>
+  <a href="#sec-formulation">Linear Programming Formulation</a>
+  <a href="#sec-excel-solver">Excel Solver</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Portfolio Analysis</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 12 &middot; Advanced Capital Budgeting</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Portfolio Analysis &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-portfolio-problem" class="container course-section">
+  <div class="ctitle">The Portfolio Problem</div>
+  <p>A company has limited capital—say, \$200,000—and dozens of investment opportunities across departments and regions. Which subset of projects should it fund to maximize total value (NPW, IRR, or benefit-cost) while respecting budget and logical constraints?</p>
+  <p>This is the capital budgeting problem. Unlike earlier analyses (where you compare a few projects one at a time), portfolio analysis simultaneously considers all possible combinations under a fixed budget, finding the optimal mix. Large companies (Boeing, Rolls-Royce) use this daily: hundreds of projects worldwide, limited capital, complex dependencies (some projects require others to be completed first).</p>
+</div>
+
+<div id="sec-constraints" class="container course-section">
+  <div class="ctitle">Types of Constraints</div>
+  <p><strong>Capital constraint:</strong> Total initial investment across selected projects cannot exceed available budget.</p>
+  <p><strong>Mutually exclusive:</strong> Either select Project A or Project B, but not both. Examples: choose one technology for a facility, select one vendor.</p>
+  <p><strong>Contingent (prerequisite):</strong> Project B can only be selected if Project A is also selected. Example: a housing facility for workers can only proceed if a dam project (its precursor) is approved.</p>
+  <p><strong>Resource constraints:</strong> Limited skilled personnel, equipment, or facility capacity. Example: only 2 project managers available; each large project requires one.</p>
+</div>
+
+<div id="sec-formulation" class="container course-section">
+  <div class="ctitle">Linear Programming Formulation</div>
+  <p>Define binary decision variables $x_j$ for each project (0 = reject, 1 = select). The objective is to maximize total present worth:</p>
+  <p>$$\text{Maximize } Z = \sum_{j=1}^{n} \text{NPW}_j \cdot x_j$$</p>
+  <p>Subject to:</p>
+  <p><strong>Capital constraint:</strong>
+  $$\sum_{j=1}^{n} I_j \cdot x_j \leq \text{Budget}$$
+  where $I_j$ is the initial cost of project $j$.</p>
+  <p><strong>Mutually exclusive (A and B):</strong>
+  $$x_A + x_B \leq 1$$</p>
+  <p><strong>Contingent (B requires A):</strong>
+  $$x_B \leq x_A \quad \text{or equivalently} \quad x_B - x_A \leq 0$$</p>
+  <p><strong>Non-negativity and binary:</strong>
+  $$x_j \in \{0, 1\} \quad \forall j$$</p>
+  <p><strong>Example:</strong> Six projects, budget \$200,000:
+  \begin{align}
+  \text{Maximize } &Z = 50x_1 + 60x_2 + 40x_3 + 70x_4 + 55x_5 + 45x_6\\
+  \text{s.t. } &50x_1 + 60x_2 + 45x_3 + 80x_4 + 90x_5 + 100x_6 \leq 200\\
+  &x_1 + x_2 \leq 1 \quad (\text{mutually exclusive})\\
+  &x_5 + x_6 \leq 1 \quad (\text{mutually exclusive})\\
+  &x_5 \leq x_1 + x_4 \quad (\text{Project 5 requires 1 or 4})\\
+  &x_j \in \{0, 1\}
+  \end{align}</p>
+</div>
+
+<div id="sec-excel-solver" class="container course-section">
+  <div class="ctitle">Solving with Excel Solver</div>
+  <p><strong>Setup:</strong></p>
+  <ol>
+    <li>Calculate NPW for each project (known from prior analysis).</li>
+    <li>Create a decision variable row: one cell per project, initially all 0.</li>
+    <li>Create a total-value cell with a formula: <code>=SUMPRODUCT(NPW_range, decision_range)</code>. This is your objective function.</li>
+    <li>Create constraint cells: capital used (sum of $I_j \cdot x_j$), mutual exclusivity sums, contingency checks.</li>
+  </ol>
+  <p><strong>Running Solver:</strong> Go to Data → Solver (or Data → What-If Analysis → Solver on some systems).</p>
+  <ul>
+    <li>Set objective cell (your total-value formula).</li>
+    <li>Choose "Max" (or "Min" if minimizing cost).</li>
+    <li>Add constraints (capital ≤ budget, mutual exclusivity ≤ 1, contingencies ≤ 0).</li>
+    <li>Set decision variables as "Binary" (forces 0 or 1).</li>
+    <li>Click Solve.</li>
+  </ul>
+  <p>Solver returns the optimal selection: which projects to fund. Verify that constraints are satisfied and total NPW is maximized.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens: From Theory to Decisions</div>
+  <p><strong>Before Solver:</strong> Eliminate obviously bad projects (NPW < 0, BC < 1). This reduces the search space and makes the optimization faster and more interpretable. A project with negative NPW should never be selected, so you can discard it upfront.</p>
+  <p><strong>Interpreting results:</strong> Solver tells you which projects to fund. Check that the total cost doesn't exceed budget and all constraints are satisfied. Ask: Does the selection make strategic sense? Are key initiatives (those pushing the company's strategy forward) included? If not, you may want to manually adjust constraints (e.g., "Project X must be selected") and re-run to explore alternatives.</p>
+  <p><strong>Sensitivity:</strong> How sensitive is the solution to assumptions? If budget increased by 10%, would a different set of projects be optimal? If a project's NPW estimate is off by 20%, is it still in the optimal portfolio? Run Solver multiple times with modified inputs to understand robustness.</p>
+  <p><strong>Real-world scale:</strong> Large companies have hundreds of projects. Solver still works—it's just a big linear program. Some firms use specialized capital-budgeting software that handles thousands of projects and complex global constraints (e.g., capacity limits per region, minimum investment per business unit). But the principle is the same: allocate scarce capital to maximize total value.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Portfolio Analysis," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/12-portfolio-analysis.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

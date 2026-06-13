@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Replacement Analysis | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-when-to-replace">When to Replace</a>
+  <a href="#sec-economic-service-life">Economic Service Life</a>
+  <a href="#sec-capital-and-operating-costs">Capital and Operating Costs</a>
+  <a href="#sec-comparing-defender-and-challenger">Defender vs. Challenger</a>
+  <a href="#sec-cash-flow-methods">Cash Flow Methods</a>
+  <a href="#sec-marginal-analysis">Marginal Analysis</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Replacement Analysis</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 6 &middot; Park 12.1–12.3</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Replacement Analysis &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-when-to-replace" class="container course-section">
+  <div class="ctitle">When to Replace</div>
+  <p>Every asset eventually becomes uneconomical to keep. A car, equipment, a building—doesn't matter. You either keep it running, sell it for salvage, add capacity to it, or replace it outright. The replacement decision hinges on comparing the cost of holding what you have against the cost of switching to something new.</p>
+  <p>There are usually clear triggers. Physical deterioration: materials wear out, components fail from fatigue, performance degrades. New regulations: if an aircraft or emission standard changes, old equipment may become illegal. Better technology: old technology still works, but new alternatives cost less to run or do the job faster. Or demand changes and your current asset can't handle it anymore.</p>
+  <p>The key principle: consider only future costs. If you paid $50,000 five years ago for a machine and it's now worth $8,000, that $50,000 is gone. Sunk. It plays no role in your replace-or-keep decision. You compare what it will cost to operate the machine for one more year against what a replacement would cost over its life.</p>
+</div>
+
+<div id="sec-economic-service-life" class="container course-section">
+  <div class="ctitle">Economic Service Life</div>
+  <p>The economic service life (ESL) is the holding period that minimizes your total annual equivalent cost for an asset. It balances two competing forces: capital recovery cost declines as you spread the purchase price over more years, but operating and maintenance costs climb as the asset ages and deteriorates.</p>
+  <p>Consider a $1 million machine with a salvage value that drops 10% per year. In year one, you recover a large share of capital but maintenance is cheap. By year five, the annual capital charge has shrunk (good), but maintenance has climbed significantly (bad). Somewhere in between is the sweet spot where the sum is lowest. That is your ESL.</p>
+  <p>To find it, compute the annual equivalent cost for each holding period, then plot it. The minimum point is your answer.</p>
+</div>
+
+<div id="sec-capital-and-operating-costs" class="container course-section">
+  <div class="ctitle">Capital and Operating Costs</div>
+  <p><strong>Capital cost</strong> is what you pay upfront to acquire the asset, minus what you recover by selling or salvaging it later. If you buy a pump for $50,000 and sell it for $12,000 after five years, your net capital outlay is $38,000 spread over five periods at your discount rate.</p>
+  <p>More precisely, the uniform annual capital cost is:</p>
+  <p>$$AEC_{\text{capital}} = (P - S_n)(A/P, i, n) + S_n \cdot i$$</p>
+  <p>where $P$ is the initial cost, $S_n$ is the salvage value at end of period $n$, and $(A/P, i, n)$ is the capital recovery factor. The second term accounts for the opportunity cost of tying up money in the salvage value.</p>
+  <p><strong>Operating cost</strong> is what you spend to keep the asset running: fuel, maintenance, repairs, labor. This usually increases over time as equipment ages. If maintenance is $5,000 in year one and grows 8% annually, you have a gradient. Convert that gradient to an annual equivalent and add it to the capital cost.</p>
+  <p>Total annual equivalent cost is the sum:</p>
+  <p>$$AEC = AEC_{\text{capital}} + AEC_{\text{operating}}$$</p>
+</div>
+
+<div id="sec-comparing-defender-and-challenger" class="container course-section">
+  <div class="ctitle">Defender vs. Challenger</div>
+  <p>The <em>defender</em> is the asset you own now. The <em>challenger</em> is the replacement you're considering, which may be a newer model of the same thing or an entirely different technology.</p>
+  <p>The decision structure depends on your planning horizon:</p>
+  <ul>
+    <li><strong>Identical replacement (infinite horizon):</strong> Calculate the ESL for the defender and the ESL for the challenger. Pick whichever has the lower AEC at its ESL. If they have the same economics (same technology, same operating cost trajectory), you replace the defender at its ESL and repeat.</li>
+    <li><strong>Different asset (challenger is not currently made):</strong> Calculate the ESL and AEC for the challenger. Compare the challenger's AEC to the marginal cost of keeping the defender one more year. Keep replacing the defender year by year until the marginal cost exceeds the challenger's AEC.</li>
+    <li><strong>Finite horizon:</strong> You know you need the asset for exactly $N$ years. Calculate the present worth or annual equivalent cost over $N$ periods for both defender and challenger, then pick the lower one.</li>
+  </ul>
+</div>
+
+<div id="sec-cash-flow-methods" class="container course-section">
+  <div class="ctitle">Cash Flow Methods</div>
+  <p>There are two equivalent ways to set up the comparison, and both give the same answer. Choose whichever makes the problem clearer.</p>
+  <p><strong>Cash flow method:</strong> Treat the sale of the defender as a reduction in the challenger's purchase price. If the defender is worth $20,000 today, you net that as a cash inflow when you buy the challenger. At the end of the holding period, you salvage the challenger (not the defender) and pocket that recovery.</p>
+  <p><strong>Opportunity cost method:</strong> Keep the defender in your analysis as a separate cash flow scenario. By choosing not to sell the defender today, you forgo the $20,000 you could have received. That becomes an opportunity cost, a negative cash flow at time zero. The rest of the analysis is straightforward: operating costs for the defender, a salvage value at the end, and you compare the two scenarios.</p>
+  <p>Both methods yield the same annual equivalent cost. The cash flow method is often cleaner for hand calculations; the opportunity cost method can be clearer conceptually because it separates the decision (keep vs. replace) from the financing.</p>
+</div>
+
+<div id="sec-marginal-analysis" class="container course-section">
+  <div class="ctitle">Marginal Analysis</div>
+  <p>When the challenger is fundamentally different from the defender (or no longer made), you don't compare their ESLs directly. Instead, ask: should I keep the defender one more year, or switch to the challenger now?</p>
+  <p>Calculate the incremental cost of keeping the defender for one additional year beyond its ESL. This includes the operating cost for that year plus the drop in salvage value:</p>
+  <p>$$\text{Marginal cost} = OC + (S_{n-1} - S_n)(A/P, i, 1)$$</p>
+  <p>where $OC$ is the operating cost in that year, $S_{n-1}$ is salvage at the start, and $S_n$ is salvage at the end.</p>
+  <p>If this marginal cost exceeds the challenger's annual equivalent cost, replace now. Otherwise, wait another year and recalculate. You keep the defender until the marginal cost of one more year finally exceeds the challenger's AEC.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens</div>
+  <p><strong>Investing.</strong> Replacement analysis mirrors real option valuation in finance. You hold an asset (stock, bond, real estate) and periodically decide: keep it for its cashflows, or exit and redeploy capital elsewhere? The breakeven occurs when the dividend yield or cash yield on the incumbent position falls below what you can earn on the alternative. This is especially acute for growth stocks: hold them when growth justifies the valuation, but switch to value or bonds when growth stalls and the required return on capital no longer materializes. The key insight from engineering economics is to ignore sunk costs (the $500 you overpaid for the stock three years ago) and focus only on forward cashflows and the opportunity cost of your capital going forward.</p>
+  <p><strong>Engineering.</strong> Every capital project—buying a new compressor, upgrading HVAC, retrofitting a production line—is a replacement decision. Always compute the annual equivalent cost over the asset's full useful life, not just the upfront purchase price. A cheaper pump that requires expensive maintenance over time often costs more per year than a high-efficiency pump that runs cleanly for longer. Discount everything to the same time point before comparing alternatives.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Replacement Analysis," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/06-replacement-analysis.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Time Value of Money &amp; Economic Equivalence | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-time-value-of-money">Time Value of Money</a>
+  <a href="#sec-interest-is-rent-on-money">Interest Is Rent on Money</a>
+  <a href="#sec-simple-vs-compound-interest">Simple vs. Compound Interest</a>
+  <a href="#sec-cash-flow-diagrams">Cash Flow Diagrams</a>
+  <a href="#sec-economic-equivalence">Economic Equivalence</a>
+  <a href="#sec-factor-notation-and-lookup-tables">Factor Notation and Lookup Tables</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+
+<div class="container course-header">
+  <h1>Time Value of Money &amp; Economic Equivalence</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 1 &middot; Park 1.1&ndash;1.4, 2.1&ndash;2.3</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Time Value of Money &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-time-value-of-money" class="container course-section">
+  <div class="ctitle">Time Value of Money</div>
+  <p>The money you have now versus the money you will have later &mdash; are they the same? The answer is no. An earlier dollar is worth more than a later dollar, and for simplified thinking, two effects drive this. <strong>Interest</strong> increases your earning power: leave \$100 in a savings account at 3% and after a year you have \$103. <strong>Inflation</strong> decreases your buying power: start the year with \$100 under 3% inflation and it is only worth \$97 a year from now.</p>
+  <p>The combined effect is what matters. Suppose a refrigerator costs \$100 today and you have exactly \$100. If inflation runs at 8% while your savings earn 6%, after one year the refrigerator costs \$108 but you only have \$106, so you lost 2% of purchasing power by waiting. Flip the rates (6% earning, 4% inflation) and you have \$106 against a \$104 price tag: you gained. Simple rule: when the earning rate is above the inflation rate, holding and saving money works in your favor.</p>
+  <p>Keep in mind that these rates are not abstractions. The 1973 oil crisis, the 2008 housing bubble, the COVID pandemic: wars, trade wars, and financial crises all move interest and inflation, and with them the time value of money.</p>
+</div>
+
+<div id="sec-interest-is-rent-on-money" class="container course-section">
+  <div class="ctitle">Interest Is Rent on Money</div>
+  <p>Think of interest as <em>renting your money</em>. Lend money to someone (or deposit it in a bank) and you are giving them the privilege of using it; they pay you for that privilege, just like rent on a room. Borrow, and you are the one paying rent. Interest is quoted as a percentage tied to a fixed time period, and you receive it only after the period has passed.</p>
+  <p>Single-period example: deposit \$100 at 5% annually and withdraw \$105 a year later. Borrow \$100 at 5% and repay \$105. Either way, <strong>\$100 now is equivalent to \$105 a year from now</strong>: \$100 is the <em>present value</em> $P$, \$105 the <em>future value</em> $F$, linked by the rate $i$ and the number of periods $N$.</p>
+</div>
+
+<div id="sec-simple-vs-compound-interest" class="container course-section">
+  <div class="ctitle">Simple vs. Compound Interest</div>
+  <p><strong>Simple interest</strong> is applied only on the initial principal. Each period just adds the same slice:</p>
+  <p>$$F = P(1 + iN)$$</p>
+  <p>Plotted against time this is a straight line, $y = mx + c$ with intercept $P$ and slope set by $iN$.</p>
+  <p><strong>Compound interest</strong> is applied on the principal <em>and</em> the accrued interest. After year one, $F_1 = P(1+i)$. That becomes the new principal, so $F_2 = F_1(1+i) = P(1+i)^2$, and continuing to $N$ periods:</p>
+  <p>$$F = P(1 + i)^N$$</p>
+  <p>The $N$ has moved from a factor to an <strong>exponent</strong>, and that drastically changes the dynamics. Exponentials grow, and decay, rapidly. For the first few periods the two models barely differ; let time pass and the gap widens enormously. This long-term growth is the idea often called the <em>eighth wonder of the world</em>, and many people build their financial decisions on it.</p>
+  <p>One equation, four parameters ($F$, $P$, $i$, $N$): know any three and you can find the fourth. That is the entire problem catalog of this topic.</p>
+  <ul>
+    <li><em>Find F:</em> \$2,500 invested 4 years at 6%: $F_4 = 2500(1.06)^4 \approx \$3{,}156$.</li>
+    <li><em>Find i:</em> \$1,200 grows to \$2,000 in 6 years: $(2000/1200)^{1/6} = 1+i \Rightarrow i \approx 8.9\%$.</li>
+    <li><em>Find N:</em> \$50 doubles to \$100 at 4% <em>monthly</em>: $N = \ln 2 / \ln 1.04 \approx 17.7$, roughly 18 months. (Watch the time unit of the rate.)</li>
+  </ul>
+</div>
+
+<div id="sec-cash-flow-diagrams" class="container course-section">
+  <div class="ctitle">Cash Flow Diagrams</div>
+  <p>A cash flow diagram is a graphic representation of the magnitude, direction, and timing of cash flows. Cash received is an up arrow (positive side); cash paid out is a down arrow. Arrow length scales with the amount, like drawing vectors in statics. Time 0 is the start of year one; tick $n$ marks the <em>end</em> of period $n$.</p>
+  <p>Why bother? Because good decisions face <em>decision dilemmas</em>. You win a lottery: take \$1 million as a lump sum at time 0, or \$100k per year for ten years? Same nominal total, very different value, because the money arrives at different times. The diagram makes the dynamics visible at a glance: one tall arrow at zero versus a row of equal-height arrows marching across the years. The same goes for comparing loan repayment plans: five equal payments of \$2,400, or \$500 up front and one large payment at the end.</p>
+</div>
+
+<div id="sec-economic-equivalence" class="container course-section">
+  <div class="ctitle">Economic Equivalence</div>
+  <p>This concept is similar to equivalent resistance from circuits: two 100&nbsp;&Omega; resistors in series can be replaced by one 200&nbsp;&Omega; resistor &mdash; different components, same effect. Likewise, two cash flows with the same economic effect are <strong>economically equivalent</strong>. Borrow \$2,000 at 8%: the bank does not care whether you pay \$2,160 after one year or \$2,332.80 after two. The numbers look different, but each is the same money updated for the privilege of holding it longer.</p>
+  <p>Four cash flow rules govern all of it:</p>
+  <ol>
+    <li>Money has a time value: you cannot add or subtract amounts unless they occur at the same point in time.</li>
+    <li>Cash flows are equivalent if their computed worths at a common time period are the same.</li>
+    <li>To move money <em>forward</em> one time unit, multiply by $(1+i)$ &mdash; forward marching.</li>
+    <li>To move money <em>backward</em> one time unit, divide by $(1+i)$ &mdash; backward marching. (Quite a bit of time travel of money here.)</li>
+  </ol>
+  <p>Forward is the compounding problem; backward is the inverse, or <em>discounting</em>, problem (same $i$, but called the discount rate when used in reverse):</p>
+  <p>$$F_N = P(1+i)^N \qquad\Longleftrightarrow\qquad P = \frac{F_N}{(1+i)^N}$$</p>
+  <p><strong>Worked example.</strong> Receipts of \$4,000 at time 0, \$6,000 at end of year 2, and \$9,000 at end of year 5, with $i = 6\%$. What single amount $F_3$ at end of year 3 is equivalent? March each flow to year 3: the \$4,000 forward three periods, the \$6,000 forward one, the \$9,000 backward two:</p>
+  <p>$$F_3 = 4000(1.06)^3 + 6000(1.06) + \frac{9000}{(1.06)^2} \approx \$19{,}134$$</p>
+</div>
+
+<div id="sec-factor-notation-and-lookup-tables" class="container course-section">
+  <div class="ctitle">Factor Notation and Lookup Tables</div>
+  <p>To avoid repeated calculation, the conversion functions are tabulated (appendix of Park; one table per interest rate). The standard notation reads "find this, given that":</p>
+  <ul>
+    <li>$(F/P, i, N)$ &mdash; find $F$ given $P$: the <em>single-payment compound amount factor</em>, $(1+i)^N$.</li>
+    <li>$(P/F, i, N)$ &mdash; find $P$ given $F$: the <em>single-payment present worth factor</em>, $(1+i)^{-N}$.</li>
+  </ul>
+  <p>Example: \$3,000 invested 12 years at 5%. Look up $(F/P, 5\%, 12) = 1.7959$, so $F_{12} = 3000 \times 1.7959 \approx \$5{,}388$. Inverse: \$2,000 maturing in 9 years at 5% is worth $2000 \times (P/F, 5\%, 9) = 2000 \times 0.6446 \approx \$1{,}289$ today. Writing solutions in factor notation is the standardized habit that pays off in later topics (and on the FE exam).</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens</div>
+  <p><strong>Investing.</strong> Everything in security analysis rests on this topic. A stock's intrinsic value is the present worth of its expected future cash flows discounted at a required rate of return. It is the same $(P/F, i, N)$ machinery, applied to dividends or free cash flow instead of machine costs. And the refrigerator lesson generalizes: an investment only builds purchasing power when its earning rate beats inflation, so track real (inflation-adjusted) returns, not nominal ones. When rates rise, the present worth of distant cash flows falls. Long-duration growth stocks feel it more than mature dividend payers.</p>
+  <p><strong>Engineering.</strong> Any design decision with costs and benefits spread over time (buy the efficient pump now, or pay higher energy bills for a decade?) is an equivalence problem. Discount every alternative's cash flows to the same point in time before comparing; comparing raw dollar totals across different years violates rule&nbsp;1 and quietly biases you toward whichever option defers its costs.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, &ldquo;Time Value of Money &amp; Economic Equivalence,&rdquo; <em>ENGR 4760 Engineering Economics &mdash; Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/01-time-value-of-money.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

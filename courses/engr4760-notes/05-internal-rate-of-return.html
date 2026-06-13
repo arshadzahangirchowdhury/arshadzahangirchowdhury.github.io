@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Internal &amp; Incremental Rate of Return | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-what-irr-is">What IRR Is</a>
+  <a href="#sec-the-decision-rule">The Decision Rule</a>
+  <a href="#sec-simple-vs-non-simple-multiple-irrs">Simple vs. Non-Simple &amp; Multiple IRRs</a>
+  <a href="#sec-incremental-rate-of-return">Incremental Rate of Return</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Internal &amp; Incremental Rate of Return</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 5 &middot; Park 7.1&ndash;7.4</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Internal &amp; Incremental Rate of Return &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-what-irr-is" class="container course-section">
+  <div class="ctitle">What IRR Is</div>
+  <p>In the last topic we picked a discount rate (the MARR) and asked whether the present worth came out positive. The internal rate of return flips that around. Instead of choosing the rate, we ask: what rate would make this project exactly break even? The <strong>internal rate of return (IRR)</strong> is the interest rate that sets net present value to zero, the rate at which the present value of the inflows exactly equals the present value of the outflows.</p>
+  <p>$$NPV = 0 = CF_0 + \frac{CF_1}{1+IRR} + \frac{CF_2}{(1+IRR)^2} + \frac{CF_3}{(1+IRR)^3} + \cdots$$</p>
+  <p>That is one equation with the IRR buried inside every denominator, so for anything beyond a couple of periods you do not solve it by hand. In practice you let a spreadsheet do it: <code>IRR(cash flow range, guess)</code> hunts numerically for the rate that zeroes the NPV. Hold on to that word <em>guess</em>, because it matters more than it looks, as we will see.</p>
+</div>
+
+<div id="sec-the-decision-rule" class="container course-section">
+  <div class="ctitle">The Decision Rule</div>
+  <p>Once you have the IRR, the verdict is a single comparison against the hurdle rate:</p>
+  <table class="course-schedule">
+    <thead>
+      <tr><th>Condition</th><th>Meaning</th><th>Decision</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>$IRR > MARR$</td><td>Earns more than your hurdle</td><td>Accept the project</td></tr>
+      <tr><td>$IRR < MARR$</td><td>Earns less than your hurdle</td><td>Reject the project</td></tr>
+      <tr><td>$IRR = MARR$</td><td>Exactly breaks even</td><td>Investor's call</td></tr>
+    </tbody>
+  </table>
+  <p>Here is the important caveat: IRR is excellent for judging whether <em>one</em> project clears the bar, but it is unreliable for ranking competing projects against each other. A higher IRR does not automatically mean the better choice, and that is the trap the incremental method exists to fix.</p>
+  <p><em>Example.</em> A friend pitches you their business: you put in \$200 today and receive \$50, \$50, \$100, \$100, \$125 over the next five years, with a MARR of 10%. The cash flow goes negative once and then stays positive, so there is a single, unambiguous IRR, and here it lands around 26%. Comfortably above the 10% hurdle, so back the idea.</p>
+</div>
+
+<div id="sec-simple-vs-non-simple-multiple-irrs" class="container course-section">
+  <div class="ctitle">Simple vs. Non-Simple &amp; Multiple IRRs</div>
+  <p>Why was that example clean? Because the cash flow changed sign only once: out, then in and staying in. That is a <strong>simple investment</strong>, and a simple investment has exactly one IRR. You can lead with several negative or zero periods and it is still simple, as long as the sign flips just once over the whole life.</p>
+  <p>A <strong>non-simple investment</strong> flips sign more than once: money out, then in, then a big outflow again (a mid-life overhaul, a cleanup cost, a reinvestment). Each sign change is a chance for the NPV equation to cross zero again, so a non-simple cash flow can have <em>multiple</em> IRRs, several different rates that all make NPV zero. Mathematically they are all valid roots; economically, none of them is a trustworthy single answer.</p>
+  <p>This is where that innocent "guess" comes back to bite. Feed a spreadsheet's IRR function a non-simple cash flow and it returns the root nearest your starting guess. Start at 5%, 10%, or 15% and it might report 5.6%; start at 20% and the very same cash flow reports 27.8%. Same numbers, two answers, decided entirely by where you started looking. The fix is simple and worth making a habit: <strong>when the sign changes more than once, plot NPV against the discount rate</strong> and look at the whole curve. Every place it crosses zero is an IRR, and seeing the shape tells you which root, if any, is economically meaningful instead of trusting a number that quietly depends on a guess.</p>
+</div>
+
+<div id="sec-incremental-rate-of-return" class="container course-section">
+  <div class="ctitle">Incremental Rate of Return</div>
+  <p>Now to that ranking problem. Suppose two mutually exclusive alternatives both deliver the same kind of benefit and both clear the MARR on their own. You <em>cannot</em> just pick the one with the higher IRR. (If you would rather avoid the issue entirely, comparing present worths always ranks them correctly. But the rate-of-return crowd has its own clean tool.)</p>
+  <p>The idea: stop asking "which IRR is bigger" and start asking "is the extra money the pricier option demands worth spending?" Subtract the lower-first-cost alternative's cash flows from the higher-first-cost one to get the <strong>incremental cash flow</strong> ($\Delta$), then compute the IRR <em>on that increment</em>. That is the $\Delta ROR$, the return you earn on the extra dollars.</p>
+  <ul>
+    <li>$\Delta ROR > MARR$: the extra investment pays off well enough &mdash; choose the higher-cost alternative.</li>
+    <li>$\Delta ROR < MARR$: the extra money earns more elsewhere &mdash; choose the lower-cost alternative.</li>
+  </ul>
+  <p><em>Example.</em> Project A costs \$1,000 up front; Project B costs \$2,783. On their own, A returns 48.7% and B returns 32.6%, both well above a 10% MARR, so the naive move is to grab A for its gaudier IRR. But that ignores the question that actually matters. The increment $B - A$ is an extra \$1,783 spent now to buy two more years of \$1,000 returns, and the IRR on that increment is only 8.0%. Since 8.0% is below the 10% MARR, the extra \$1,783 is not pulling its weight: you would do better spending \$1,000 on A and putting the other \$1,783 to work elsewhere at 10%. So reject the increment and choose A, even though B is also a perfectly acceptable project in isolation. That last point is the whole lesson: "acceptable" and "best" are different questions.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens</div>
+  <p><strong>Investing.</strong> IRR is the annualized return baked into any cash-flow stream, which is why it shows up everywhere from bond yield-to-maturity to private-equity and real-estate underwriting. But the cautions here are exactly the ones that burn investors. The multiple-root problem is real for anything with interim outflows (a fund that calls capital again mid-life, a property with a big planned renovation), and the ranking trap is constant: a small position with a spectacular percentage return can create less wealth than a larger one with a merely good return. IRR answers "what rate?", net present value answers "how much money?" &mdash; and when you must choose, dollars usually win.</p>
+  <p><strong>Engineering.</strong> When a firm thinks in rate-of-return terms, the incremental method is how you defend a more expensive, higher-performance design: not by its own IRR, but by showing the return earned on the extra capital it requires beats the hurdle. And always sanity-check the cash flow for sign changes before quoting an IRR. A project with a major mid-life rebuild or end-of-life remediation cost is non-simple, and an unchecked spreadsheet IRR on it can hand you a confident, guess-dependent, and wrong number.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, &ldquo;Internal &amp; Incremental Rate of Return,&rdquo; <em>ENGR 4760 Engineering Economics &mdash; Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/05-internal-rate-of-return.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

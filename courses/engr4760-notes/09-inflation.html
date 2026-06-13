@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Inflation | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-what-is-inflation">What is Inflation</a>
+  <a href="#sec-measuring-inflation">Measuring Inflation</a>
+  <a href="#sec-actual-vs-constant">Actual vs. Constant Dollars</a>
+  <a href="#sec-inflation-adjusted-rates">Inflation-Adjusted Interest Rates</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Inflation</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 9 &middot; Park 4.1–4.3, 10.6</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Inflation &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-what-is-inflation" class="container course-section">
+  <div class="ctitle">What is Inflation</div>
+  <p>Inflation is the rate at which prices of goods and services rise, reducing your purchasing power. In 1990, \$100 could buy roughly 50 Big Macs. In 2023, that same \$100 buys only 16 Big Macs (price rise from \$2 to \$6 each—a 200% increase). The money itself didn't change; its value decreased. The opposite of inflation is deflation, where prices fall and purchasing power increases (rare, except in certain sectors like electronics due to technological advancement).</p>
+  <p>Inflation rates vary by sector. Medical care, college tuition, and housing have historically inflated rapidly, while consumer electronics have deflated as technology improves. This uneven inflation complicates economic analysis—you cannot assume a single inflation rate applies uniformly.</p>
+</div>
+
+<div id="sec-measuring-inflation" class="container course-section">
+  <div class="ctitle">Measuring Inflation: Consumer Price Index (CPI)</div>
+  <p>The U.S. Bureau of Labor Statistics publishes the Consumer Price Index (CPI), a measure of price changes for a "market basket" of goods and services tracked over time. It includes major categories: food, housing, transportation, medical care, entertainment, etc.</p>
+  <p>CPI compares the cost of this basket in a given year to its cost in a base period. For example, if the base period is 1982–1984 and the basket cost \$100 then:</p>
+  <p>$$\text{CPI} = \frac{\text{Cost of basket in given year}}{\text{Cost of basket in base period}} \times 100$$</p>
+  <p><strong>Example:</strong> If the basket costs \$245 in 2022 relative to a 1982–1984 base of \$100, then CPI = 245.</p>
+  <p><strong>Inflation rate between two years:</strong>
+  $$f = \frac{\text{CPI}_{\text{year 2}} - \text{CPI}_{\text{year 1}}}{\text{CPI}_{\text{year 1}}}$$</p>
+  <p>The <strong>average inflation rate</strong> over multiple years accounts for varying yearly rates. If prices rise 5% in year 1 and 8% in year 2, the average rate is:</p>
+  <p>$$\bar{f} = \sqrt[2]{(1 + 0.05)(1 + 0.08)} - 1 = \sqrt[2]{1.1340} - 1 \approx 6.48\%$$</p>
+</div>
+
+<div id="sec-actual-vs-constant" class="container course-section">
+  <div class="ctitle">Actual Dollars vs. Constant Dollars</div>
+  <p><strong>Actual (or current) dollars:</strong> Cash amounts at the time of transaction—what you see on a check. Future cash flows in actual dollars reflect anticipated inflation.</p>
+  <p><strong>Constant (or real) dollars:</strong> Amounts adjusted to a base period's purchasing power, independent of when the transaction occurs. All values have equal buying power.</p>
+  <p><strong>Converting between them:</strong>
+  $$\text{Actual dollars in year } n = \text{Constant dollars} \times (1 + \bar{f})^n$$</p>
+  <p><strong>Example:</strong> A constant-dollar expense of \$1,000 in year 3, with 8% average inflation, costs:</p>
+  <p>$$\text{Actual dollars} = 1,000 \times (1.08)^3 = 1,260$$</p>
+  <p>Your bank account sees the larger check (\$1,260) because inflation eroded purchasing power. Without inflation adjustment, the constant-dollar amount (\$1,000 in "today's money") would understate what you actually pay.</p>
+</div>
+
+<div id="sec-inflation-adjusted-rates" class="container course-section">
+  <div class="ctitle">Inflation-Adjusted Interest Rates</div>
+  <p>When comparing investment returns or project economics, you must account for inflation. There are two key rates:</p>
+  <p><strong>Inflation-free rate ($i'$):</strong> The real interest rate (the earning power of money with time value), ignoring inflation. This is what you've used until now in all TVM calculations.</p>
+  <p><strong>Market (or nominal) interest rate ($i$):</strong> The rate you actually see quoted, combining earning power and inflation adjustment. Banks and loan agreements use this rate.</p>
+  <p><strong>Relationship:</strong>
+  $$i = (1 + i')(1 + \bar{f}) - 1$$</p>
+  <p>Or, rearranged to solve for the inflation-free rate:</p>
+  <p>$$i' = \frac{1 + i}{1 + \bar{f}} - 1$$</p>
+  <p><strong>Example:</strong> If your minimum attractive rate of return (real earning power) is 10% and inflation is 3%, the inflation-adjusted MARR you must use in analysis is:</p>
+  <p>$$i = (1.10)(1.03) - 1 = 1.133 - 1 = 0.133 = 13.3\%$$</p>
+  <p>Projects must achieve 13.3% nominal returns to deliver your true 10% real return after inflation erodes purchasing power.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens: Two Approaches to Inflation Analysis</div>
+  <p><strong>Approach 1: All actual dollars.</strong> Use nominal (inflation-adjusted) interest rates; model all cash flows in actual dollars. Each year's cash flow reflects its true purchasing power. This is preferred for private-sector analysis with taxes, since tax returns require actual dollar reporting.</p>
+  <p><strong>Approach 2: All constant dollars.</strong> Use real (inflation-free) interest rates; model all cash flows in base-year purchasing power. Often used for public-sector projects, where the government doesn't pay taxes and stakeholder preference is typically "how much real benefit does this deliver, not accounting for price changes?"</p>
+  <p><strong>Critical rule:</strong> Never mix. If you use actual dollars, use the nominal rate. If you use constant dollars, use the real rate. Mixing produces nonsense results.</p>
+  <p><strong>Depreciation and debt are not inflation-adjusted:</strong> Depreciation is calculated on the original cost basis (not adjusted for inflation). Loan principal and interest are fixed by contract (not adjusted). Only revenues and operating expenses typically inflate. This mismatch over long projects can have large tax effects.</p>
+  <p><strong>Real returns matter for long-term wealth:</strong> A savings account earning 6% nominal return looks attractive until you account for 3% inflation—your real return is only 3%, barely above inflation. When building projects over decades, always ask: what's the real (inflation-adjusted) return?</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, "Inflation," <em>ENGR 4760 Engineering Economics – Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/09-inflation.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>

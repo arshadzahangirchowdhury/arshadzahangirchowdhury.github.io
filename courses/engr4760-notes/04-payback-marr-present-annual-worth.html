@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Notes: Payback, MARR, Present &amp; Annual Worth | ENGR 4760</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  </head>
+  <body class="note-page">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="../../index.html">Home</a></li>
+    <li><a href="../../index.html#research">Research</a></li>
+    <li><a href="../../index.html#teaching">Teaching</a></li>
+    <li><a href="../../index.html#mlprojects">ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="note-sidebar">
+  <div class="note-sidebar-title">On this page</div>
+  <a href="#sec-payback-methods">Payback Methods</a>
+  <a href="#sec-simple-payback">Simple Payback</a>
+  <a href="#sec-discounted-payback">Discounted Payback</a>
+  <a href="#sec-minimum-attractive-rate-of-return-marr">MARR</a>
+  <a href="#sec-present-worth-method">Present Worth Method</a>
+  <a href="#sec-unequal-lives-the-lcm-trick">Unequal Lives: the LCM Trick</a>
+  <a href="#sec-annual-worth-method">Annual Worth Method</a>
+  <a href="#sec-practice-lens">Practice Lens</a>
+</nav>
+
+<div class="container course-header">
+  <h1>Payback, MARR, Present &amp; Annual Worth</h1>
+  <p class="course-sub"><a href="../engr4760.html">ENGR 4760: Engineering Economics</a> &middot; Study Notes &middot; Topic 4 &middot; Park 5.1&ndash;5.4, 6.1&ndash;6.3</p>
+  <button class="print-btn" onclick="window.print()" title="Print or save this page as PDF">&#128424; Print / PDF</button>
+</div>
+
+<div class="print-footer">
+  ENGR 4760 Study Notes: Payback, MARR, Present &amp; Annual Worth &mdash; M Arshad Zahangir Chowdhury &mdash; arshadzahangirchowdhury.github.io
+</div>
+
+<div id="sec-payback-methods" class="container course-section">
+  <div class="ctitle">Payback Methods</div>
+  <p>So far we have moved money around. Now we start using it to make decisions. A payback method answers a simple question: how long until you get your investment back? It works off the <strong>cumulative cash flow</strong>, tracking a running balance until the project turns positive. Shorter is better, since your money comes back sooner. Firms usually set a maximum allowable payback period and treat it as a <em>constraint</em>, not a goal: any project that does not pay back within, say, four years gets screened out before deeper analysis.</p>
+</div>
+
+<div id="sec-simple-payback" class="container course-section">
+  <div class="ctitle">Simple Payback</div>
+  <p>Add up the cash flows year by year, ignoring the time value of money (so it works on non-discounted cash flows), and find the year the running total first turns positive.</p>
+  <p><em>Example.</em> Invest \$12,000; returns of \$3,000, \$4,000, \$6,000, \$5,000 over four years. The cumulative balance runs $-12{,}000 \to -9{,}000 \to -5{,}000 \to +1{,}000$. It crosses zero during year 3, so the payback is the end of year 3. Years 4 and beyond are never even consulted.</p>
+  <p>Two limitations make this a screening tool, not a verdict. It <strong>ignores the time value of money</strong>: that \$6,000 in year 3 is counted as if it were worth the same as today's dollars. And it <strong>ignores every cash flow beyond the payback point</strong>, so a slow-starting project that becomes hugely profitable later can be wrongly rejected. Its redeeming qualities: it is fast (you can almost do it in your head), and a short payback genuinely signals lower risk, which matters in an uncertain world.</p>
+</div>
+
+<div id="sec-discounted-payback" class="container course-section">
+  <div class="ctitle">Discounted Payback</div>
+  <p>The fix for the first flaw: charge the running balance interest each period, reflecting what the tied-up money <em>could</em> have earned elsewhere (the opportunity cost). Each year, before adding the new profit, grow the outstanding balance by the interest rate.</p>
+  <p>Using the same project at 10%: after year 1, the $-12{,}000$ balance accrues $-12{,}000 \times 0.10 = -1{,}200$ of foregone interest, then the \$3,000 profit lands, giving $-12{,}000 - 1{,}200 + 3{,}000 = -10{,}200$. Carry that forward the same way each year. Because the project now has a higher bar to clear, the <strong>discounted payback is always longer than the simple payback</strong> (they only coincide at a near-zero interest rate). More realistic, but it still ignores everything past the payback point, so the slow-growth blind spot remains. Any payback method biases you toward short-term returns.</p>
+</div>
+
+<div id="sec-minimum-attractive-rate-of-return-marr" class="container course-section">
+  <div class="ctitle">Minimum Attractive Rate of Return (MARR)</div>
+  <p>The MARR is the return a project must clear to be worth doing, also called the <em>hurdle rate</em> or <em>discount rate</em>. The logic is opportunity cost: if your money could earn 7% sitting in the market, a project had better beat that, or why tie up the capital? You select it as the larger of your cost of capital (the interest on borrowing) and the return on the best opportunity you give up by committing.</p>
+  <p>The MARR is usually handed to you by the firm. With limited capital, a firm ranks all candidate projects by expected return and funds them top down until the money runs out; the return of the best project it <em>could not</em> afford becomes the effective hurdle for the next dollar. Riskier projects get a higher MARR, the <em>risk-adjusted discount rate</em>. It helps to think of the MARR as the interest rate you are aiming to beat.</p>
+</div>
+
+<div id="sec-present-worth-method" class="container course-section">
+  <div class="ctitle">Present Worth Method</div>
+  <p>Unlike payback, the present worth (PW) method uses every cash flow and respects the time value of money. Bring all inflows and outflows back to time zero at the MARR, sum them, and judge: <strong>accept if PW is positive.</strong> (The terms present worth, net present worth, present value, and net present value are used interchangeably.)</p>
+  <p><em>Example.</em> Invest \$80,000; returns of \$25,000, \$30,000, \$32,000, and \$5,000 over four years at a 10% MARR. Discount each return with its $(P/F, 10\%, n)$ and subtract the \$80,000 (already at time zero). The PW comes out positive, so the project is acceptable.</p>
+  <p>For <strong>mutually exclusive alternatives with equal lives</strong>, compute each one's PW and pick the numerically higher value. When the cash flows are all costs (investment, annual maintenance, minus a salvage recovered at the end), every PW is negative, and "numerically higher" means the one closest to zero, i.e. the cheapest to own. The salvage value is a positive inflow at the final period, discounted back like any other future amount.</p>
+</div>
+
+<div id="sec-unequal-lives-the-lcm-trick" class="container course-section">
+  <div class="ctitle">Unequal Lives: the LCM Trick</div>
+  <p>Comparing a 4-year option against a 6-year one over their own lifetimes is not a fair fight. The standard remedy is to analyze all alternatives over a common horizon equal to the <strong>least common multiple</strong> of their lives, assuming each project simply repeats, unchanged, each cycle. For lives of 4 and 6, the LCM is 12: the first repeats three times, the second twice.</p>
+  <p>You do not have to redraw the whole timeline. Compute one cycle's present worth, then treat that value as a lump recurring at the start of each repeat and discount the repeats back. If a 3-year cycle is worth $-\$22{,}600$ at time zero, the second cycle's identical $-\$22{,}600$ sits at year 3 and comes back as $-22{,}600\,(P/F, i, 3)$, the third at year 6 as $-22{,}600\,(P/F, i, 6)$, and so on; sum them for the PW over all cycles.</p>
+  <p>The repetition assumption is rarely realistic (few projects truly clone themselves every few years), but it makes the comparison as fair as the method allows. One clean special case: when a project's life is effectively <strong>infinite</strong>, the annual costs become a <em>perpetuity</em>, so their present worth is just $A/i$ (from Topic 2), and any salvage discounted across a thousand years is worthless. The math collapses to investment plus $A/i$ &mdash; tidy.</p>
+</div>
+
+<div id="sec-annual-worth-method" class="container course-section">
+  <div class="ctitle">Annual Worth Method</div>
+  <p>The annual worth (AW) method is the present worth method with one extra step: compute the PW, then spread it into an equivalent uniform annual amount using the capital recovery factor from Topic 2:</p>
+  <p>$$AW = PW\,(A/P, i, N)$$</p>
+  <p>Because PW and AW are linked by a single factor, they always reach the <strong>same decision</strong>. (The names pile up: annual worth, annual equivalent worth, equivalent annual cost, equivalent uniform annual cost. All the same thing.) Why bother converting? A per-year figure is often more intuitive than one big number at time zero, it matches how firms report to investors, and it gives a natural unit cost (cost per year, per quarter, per unit produced).</p>
+  <p>Its cleanest payoff is <strong>unequal service lives</strong>. Where the present worth method needed the LCM trick to force a fair horizon, annual worth sidesteps it entirely: convert each alternative's one-cycle PW into an annual cost, and those per-year numbers are directly comparable, no artificial repetition required. (If you <em>did</em> annualize over the full LCM horizon, you would get the identical figure, which is a good consistency check.)</p>
+  <p><strong>Worked example (make-or-buy flavor).</strong> Two 25-hp motors, each lasting 20 years with no salvage, run 3,120 hours a year at \$0.07/kWh; MARR is 13%. The standard motor costs \$13,000 at 89.5% efficiency; the premium costs \$15,600 at 93%. Each delivers 18.65 kW of output (25 hp), so input power is output divided by efficiency, and the less efficient motor draws about 800 W more. Over a year that gap is real money, but the premium motor's energy saving (roughly \$170/yr) does not cover its higher capital cost annualized with $(A/P, 13\%, 20)$. Adding annual capital cost to annual energy cost, then dividing by kWh delivered, the standard motor lands near \$0.11/kWh and the premium slightly above it. The annual, per-unit framing is exactly what makes that comparison legible.</p>
+</div>
+
+<div id="sec-practice-lens" class="container course-section">
+  <div class="ctitle">Practice Lens</div>
+  <p><strong>Investing.</strong> The PW method is net present value, the bedrock of capital budgeting and stock valuation, and the MARR is your required rate of return or discount rate. The payback instinct shows up too: traders and lenders prize a quick return of capital because it caps downside in an uncertain world. But the payback blind spot is a real investing trap &mdash; judging a position only by how fast it breaks even ignores the long compounding tail, which is exactly where the biggest winners pay off. Use payback to screen, NPV to decide.</p>
+  <p><strong>Engineering.</strong> This is how you actually choose between designs: a cheaper machine with high upkeep versus a pricier, efficient one is settled by present worth at the firm's MARR, not by sticker price (the two-motor example is precisely this). For assets with different service lives, annual worth is usually the cleaner tool than the present worth LCM trick, since equivalent annual cost compares directly without forcing a common horizon. And the perpetuity shortcut fits long-lived public infrastructure where annual maintenance dominates and the end-of-life salvage is a rounding error.</p>
+</div>
+
+<div class="container course-section">
+  <div class="cite-box">
+    <strong>Cite these notes:</strong> M. A. Z. Chowdhury, &ldquo;Payback, MARR, Present &amp; Annual Worth,&rdquo; <em>ENGR 4760 Engineering Economics &mdash; Study Notes</em>, Rensselaer Polytechnic Institute. Available: https://arshadzahangirchowdhury.github.io/courses/engr4760-notes/04-payback-marr-present-annual-worth.html
+  </div>
+  <p><a href="../engr4760.html">&larr; Back to ENGR 4760</a></p>
+</div>
+
+<br><br><br><br><br>
+
+    <script>
+      (function() {
+        var links = document.querySelectorAll('.note-sidebar a');
+        var sections = [];
+        links.forEach(function(a) {
+          var sec = document.getElementById(a.getAttribute('href').slice(1));
+          if (sec) sections.push({ link: a, sec: sec });
+        });
+        function spy() {
+          var pos = window.scrollY + 120;
+          var current = sections[0];
+          sections.forEach(function(s) {
+            if (s.sec.offsetTop <= pos) current = s;
+          });
+          sections.forEach(function(s) {
+            s.link.classList.toggle('active', s === current);
+          });
+        }
+        window.addEventListener('scroll', spy);
+        spy();
+      })();
+    </script>
+
+  </body>
+</html>
