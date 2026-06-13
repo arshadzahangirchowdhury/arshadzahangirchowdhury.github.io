@@ -13,7 +13,8 @@
     <li><a href="#dhead">Home</a></li>
     <li><a href="#research">Research</a></li>
 	<li><a href="#teaching">Teaching</a></li>
-	<li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>  
+	<li><a href="#mlprojects">ML Projects</a></li>
+	<li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
 
     
     
@@ -366,11 +367,11 @@ Please see my <a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl
       <div class="ctitle">Teaching</div>
       
       <h4>At Rensselaer Polytechnic Institute, Troy, New York</h4>
-									<p>MANE 4030: Elements of Mechanical Design [Sum'23, Fall'23, Spring'24, Sum'24, Fall'24, Spring'25, Sum'25, Fall'25, Spring'26 (ongoing)] </p>
-									<p>MANE 4962: Machine Learning for Engineering [Spring'23,Spring'24, Spring'25, Fall'25] </p>
-									<p>MANE 4910: Fluid Dynamics Laboratory[Fall'24, Spring'25, Spring'26 (ongoing)]</p>	
-									<p>MANE 4740: Thermal and Fluids Engineering Laboratory</p>
-									<p>ENGR 4760: Engineering Economics</p>
+									<p><a href="courses/mane4030.html">MANE 4030: Elements of Mechanical Design</a></p>
+									<p><a href="courses/mane4961.html">MANE 4961: Machine Learning for Engineering</a></p>
+									<p><a href="courses/mane4910.html">MANE 4910: Fluid Dynamics Laboratory</a></p>	
+									<p><a href="courses/mane4740.html">MANE 4740: Thermal and Fluids Engineering Laboratory</a></p>
+									<p><a href="courses/engr4760.html">ENGR 4760: Engineering Economics</a></p>
 									<h4>At Ahsanullah University of Science and Technology, Dhaka, Bangladesh</h4>
 									<p>ME 201: Elements of Theory of Machine and Machine Design [Fall'14, Spring'15, Fall'15, Spring'16]</p>
 									<p>ME 2201: Mechanics of Materials [Spring'15] </p>
@@ -387,8 +388,99 @@ Please see my <a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl
 
     
 
+    <!-- ML Projects section - HIDDEN
+    <div id="mlprojects" class="container">
+      <div class="ctitle">ML Projects</div>
+      <p>A showcase of machine learning projects spanning engineering applications, data-driven modeling, and interactive tools. Click any card to expand details.</p>
+
+      <ul class="ul-withdetails">
+
+        <li>
+          <div class="wrap">
+            <div class="image" style="background-image:url(assets/ISMC_masterV2.png);">
+              <div class="imageoverlay">&#x2315;</div>
+            </div>
+            <div class="meta">
+              <h3>Project Title</h3>
+              <p>One-line summary of what this project does and the core ML method used.</p>
+            </div>
+          </div>
+          <div class="details">
+            <div class="mlcard-tech">Python &middot; PyTorch &middot; Scikit-learn</div>
+            <p>Full description of the project — what problem it addresses, what data or domain it operates in, which machine learning methods are used, and what results or insights were achieved. Replace this with your actual project content.</p>
+            <div class="mlcard-links">
+              <a href="#">GitHub</a>
+              <a href="#">Demo</a>
+              <a href="#">Paper</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="wrap">
+            <div class="image" style="background-image:url(assets/TSMC-Net.png);">
+              <div class="imageoverlay">&#x2315;</div>
+            </div>
+            <div class="meta">
+              <h3>Project Title</h3>
+              <p>One-line summary of what this project does and the core ML method used.</p>
+            </div>
+          </div>
+          <div class="details">
+            <div class="mlcard-tech">Python &middot; TensorFlow &middot; NumPy</div>
+            <p>Full description of the project — what problem it addresses, what data or domain it operates in, which machine learning methods are used, and what results or insights were achieved. Replace this with your actual project content.</p>
+            <div class="mlcard-links">
+              <a href="#">GitHub</a>
+              <a href="#">Demo</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="wrap">
+            <div class="image" style="background-image:url(assets/ROI-Finder.png);">
+              <div class="imageoverlay">&#x2315;</div>
+            </div>
+            <div class="meta">
+              <h3>Project Title</h3>
+              <p>One-line summary of what this project does and the core ML method used.</p>
+            </div>
+          </div>
+          <div class="details">
+            <div class="mlcard-tech">Python &middot; Scikit-learn &middot; Matplotlib</div>
+            <p>Full description of the project — what problem it addresses, what data or domain it operates in, which machine learning methods are used, and what results or insights were achieved. Replace this with your actual project content.</p>
+            <div class="mlcard-links">
+              <a href="#">GitHub</a>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    END OF HIDDEN ML Projects section -->
+
+    <script>
+      function setAnchorOffsets() {
+        var navbarHeight = document.querySelector('.navbar').offsetHeight;
+        document.querySelectorAll('[id]').forEach(function(el) {
+          el.style.scrollMarginTop = (navbarHeight + 10) + 'px';
+        });
+      }
+      setAnchorOffsets();
+      window.addEventListener('resize', setAnchorOffsets);
+
+      document.querySelectorAll('.ul-withdetails li').forEach(function(li) {
+        li.querySelector('.wrap').addEventListener('click', function() {
+          li.classList.toggle('open');
+        });
+      });
+    </script>
+
     <br><br><br><br><br><br><br><br><br><br><br>
 
-    
+    <footer class="site-footer">
+      <img src="https://hits.sh/arshadzahangirchowdhury.github.io.svg?label=visits&color=ff6f61" alt="visit counter">
+    </footer>
+
   </body>
 </html>

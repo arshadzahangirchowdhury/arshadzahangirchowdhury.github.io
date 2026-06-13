@@ -297,6 +297,391 @@ hr {
     padding-left: 0;
 }
 
+/* --- COURSE PAGES --- */
+.course-header {
+  margin-top: 30px;
+  text-align: center;
+  position: sticky;
+  top: 0; /* adjusted at runtime to sit below the main navbar */
+  z-index: 998; /* below the course submenu */
+  background: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.course-header h1 {
+  font-size: 32px;
+}
+
+.course-sub {
+  color: #999;
+  font-style: italic;
+  margin: 8px 0 4px 0;
+}
+
+.course-instructor {
+  color: #555;
+  margin: 0 0 10px 0;
+}
+
+.course-nav {
+  background: #f7f7f7;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin-top: 15px;
+  position: sticky;
+  top: 0; /* adjusted at runtime to sit below the main navbar */
+  z-index: 999; /* below the main navbar's 1000 */
+}
+
+.course-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.course-nav a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.course-nav a:hover {
+  background: #fff;
+  color: #ff6f61;
+}
+
+.course-section .ctitle {
+  font-size: 28px;
+  margin-top: 35px;
+  border-bottom: 2px solid #ff6f61;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.course-schedule {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.course-schedule th {
+  text-align: left;
+  background: #f5f5f5;
+  border-bottom: 2px solid #ff6f61;
+  padding: 10px 12px;
+}
+
+.course-schedule td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e5e5;
+  vertical-align: top;
+}
+
+.course-schedule tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* --- NOTE SIDEBAR (section rail for long study notes) --- */
+.note-sidebar {
+  display: none;
+}
+
+@media screen and (min-width: 1100px) {
+  .note-sidebar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    background: #faf9f7;
+    border-right: 1px solid #e8e6e1;
+    padding-top: 90px; /* clears the main navbar */
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 900;
+  }
+  /* shift note content right so the rail never overlaps it */
+  body.note-page {
+    padding-left: 220px;
+  }
+}
+
+.note-sidebar .note-sidebar-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  padding: 0 22px 10px 22px;
+}
+
+.note-sidebar a {
+  display: block;
+  padding: 11px 22px;
+  font-size: 14px;
+  color: #444;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  line-height: 1.35;
+}
+
+.note-sidebar a:hover {
+  background: #f1efeb;
+  color: #222;
+}
+
+.note-sidebar a.active {
+  background: #f3f0ec;
+  border-left-color: #ff6f61;
+  color: #222;
+  font-weight: 600;
+}
+
+@media print {
+  .note-sidebar {
+    display: none !important;
+  }
+}
+
+/* --- CITATION BOX (study notes) --- */
+.cite-box {
+  background: #f7f7f7;
+  border-left: 4px solid #ff6f61;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #555;
+  margin: 25px 0 15px 0;
+  word-break: break-word;
+}
+
+/* --- SITE FOOTER / VISIT COUNTER --- */
+.site-footer {
+  text-align: center;
+  padding: 20px 0 30px 0;
+  border-top: 1px solid #eee;
+}
+
+.site-footer img {
+  height: 20px;
+  opacity: 0.7;
+}
+
+@media print {
+  .site-footer {
+    display: none !important;
+  }
+}
+
+/* --- PRINT BUTTON & PRINT LAYOUT --- */
+.print-btn {
+  margin-top: 8px;
+  padding: 7px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background: #ff6f61;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.print-btn:hover {
+  background: #e85c4e;
+}
+
+.print-footer {
+  display: none; /* only shown when printing */
+}
+
+@media print {
+  /* hide navigation chrome and the button itself */
+  .navbar,
+  .course-nav,
+  .print-btn {
+    display: none !important;
+  }
+
+  /* un-stick the title block so it prints in flow */
+  .course-header {
+    position: static;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+  }
+
+  .container {
+    width: auto;
+    padding: 0;
+  }
+
+  .course-section .ctitle {
+    border-bottom-color: #000;
+    page-break-after: avoid;
+  }
+
+  /* keep table rows intact across page breaks */
+  .course-schedule tr {
+    page-break-inside: avoid;
+  }
+
+  .course-schedule th {
+    background: #eee !important;
+    border-bottom-color: #000;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* attribution footer repeated at the bottom of every printed page */
+  .print-footer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 9pt;
+    color: #555;
+    text-align: center;
+    border-top: 1px solid #999;
+    padding-top: 4px;
+    background: #fff;
+  }
+
+  /* reserve space so content doesn't run under the footer */
+  @page {
+    margin-bottom: 2cm;
+  }
+}
+
+/* --- ML PROJECT CARDS (ul-withdetails style) --- */
+ul.ul-withdetails {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+ul.ul-withdetails li {
+  background-color: #f5f5f5;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: border-color 0.2s;
+}
+
+ul.ul-withdetails li:hover,
+ul.ul-withdetails li.open {
+  border-left-color: #ff6f61;
+}
+
+ul.ul-withdetails li .wrap {
+  display: flex;
+  align-items: stretch;
+}
+
+ul.ul-withdetails li .image {
+  width: 140px;
+  min-height: 110px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+ul.ul-withdetails li .imageoverlay {
+  position: absolute;
+  inset: 0;
+  background-color: #ff6f61;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 22px;
+  transition: opacity 0.2s;
+}
+
+ul.ul-withdetails li:hover .imageoverlay,
+ul.ul-withdetails li.open .imageoverlay {
+  opacity: 0.85;
+}
+
+ul.ul-withdetails li .meta {
+  padding: 16px 20px;
+  flex: 1;
+}
+
+ul.ul-withdetails li .meta h3 {
+  margin: 0 0 6px 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+}
+
+ul.ul-withdetails li .meta p {
+  margin: 0;
+  color: #666;
+  font-size: 15px;
+}
+
+ul.ul-withdetails li .details {
+  display: none;
+  padding: 16px 20px 20px 20px;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.6;
+}
+
+ul.ul-withdetails li.open .details {
+  display: block;
+}
+
+ul.ul-withdetails li .details .mlcard-links {
+  margin-top: 12px;
+}
+
+ul.ul-withdetails li .details .mlcard-links a {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ff6f61;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+ul.ul-withdetails li .details .mlcard-links a:hover {
+  text-decoration: underline;
+}
+
+ul.ul-withdetails li .details .mlcard-tech {
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  ul.ul-withdetails li .image {
+    width: 90px;
+    min-height: 80px;
+  }
+}
+
 /* --- SIDE-BY-SIDE IMAGE + TEXT BLOCK --- */
 .sideblock {
   display: flex;
