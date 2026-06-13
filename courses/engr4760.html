@@ -6,7 +6,16 @@
     <title>ENGR 4760: Engineering Economics | M Arshad Zahangir Chowdhury</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
   </head>
-  <body>
+  <body class="course-page">
+
+<aside class="course-sidebar">
+  <div class="courses-title">Courses</div>
+  <a href="./mane4030.html">MANE 4030: Elements of Mechanical Design</a>
+  <a href="./mane4961.html">MANE 4961: Machine Learning for Engineering</a>
+  <a href="./mane4910.html">MANE 4910: Fluid Dynamics Laboratory</a>
+  <a href="./mane4740.html">MANE 4740: Thermal and Fluids Laboratory</a>
+  <a href="./engr4760.html">ENGR 4760: Engineering Economics</a>
+</aside>
 
 <nav class="navbar">
   <ul>
@@ -102,6 +111,19 @@
       }
       positionCourseNav();
       window.addEventListener('resize', positionCourseNav);
+
+      // Highlight current course in sidebar
+      function highlightCurrentCourse() {
+        var currentPage = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.course-sidebar a').forEach(function(link) {
+          if (link.href.includes(currentPage)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+      highlightCurrentCourse();
     </script>
 
   </body>
