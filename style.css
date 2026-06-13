@@ -10,10 +10,24 @@
 .navbar ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center; /* centers the tabs */
   gap: 40px;               /* space between tabs */
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    gap: 12px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar ul {
+    gap: 8px;
+  }
 }
 
 .navbar li {
@@ -26,6 +40,21 @@
   color: #333;
   padding: 8px 12px;
   border-radius: 4px;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .navbar a {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar a {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
 }
 
 .navbar a:hover {
@@ -42,6 +71,7 @@ body {
     font-size: 16px;
     line-height: 1.4;
     color: #333;
+    overflow-x: hidden;
 }
 
 /* Layout */
@@ -311,17 +341,47 @@ hr {
 
 .course-header h1 {
   font-size: 32px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .course-header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-header h1 {
+    font-size: 20px;
+  }
 }
 
 .course-sub {
   color: #999;
   font-style: italic;
   margin: 8px 0 4px 0;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .course-sub {
+    font-size: 12px;
+    margin: 6px 0 3px 0;
+  }
 }
 
 .course-instructor {
   color: #555;
   margin: 0 0 10px 0;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .course-instructor {
+    font-size: 12px;
+    margin: 0 0 8px 0;
+  }
 }
 
 .course-nav {
@@ -341,7 +401,21 @@ hr {
   justify-content: center;
   gap: 25px;
   margin: 0;
-  padding: 8px 0;
+  padding: 8px 10px;
+}
+
+@media (max-width: 768px) {
+  .course-nav ul {
+    gap: 12px;
+    padding: 8px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-nav ul {
+    gap: 8px;
+    padding: 6px 5px;
+  }
 }
 
 .course-nav a {
@@ -351,6 +425,20 @@ hr {
   color: #333;
   padding: 6px 10px;
   border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .course-nav a {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-nav a {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
 }
 
 .course-nav a:hover {
@@ -391,12 +479,12 @@ hr {
 
 /* --- COURSE SIDEBAR (left nav for switching between courses) --- */
 .course-sidebar {
-  display: none;
+  display: none !important;
 }
 
 @media screen and (min-width: 1100px) {
   .course-sidebar {
-    display: block;
+    display: block !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -411,6 +499,13 @@ hr {
   }
   body.course-page {
     padding-left: 220px;
+  }
+}
+
+/* Ensure mobile doesn't get sidebar padding */
+@media screen and (max-width: 1099px) {
+  body.course-page {
+    padding-left: 0 !important;
   }
 }
 
@@ -555,6 +650,23 @@ hr {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .print-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .print-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    margin-top: 5px;
+  }
 }
 
 .print-btn:hover {
