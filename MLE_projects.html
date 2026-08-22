@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI/ML for Engineering — Published Research &amp; Class Projects | M Arshad Zahangir Chowdhury</title>
+<meta name="description" content="Published research and selected advised class projects applying machine learning to gas sensing, X-ray imaging, aerospace, fluid dynamics, materials, robotics, and computational engineering." />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:      #f7f9fc;
+    --bg2:     #eef2f8;
+    --card:    #ffffff;
+    --teal:    #0f766e;
+    --teal2:   #0d9488;
+    --gold:    #b8860b;
+    --green:   #059669;
+    --text:    #1c2333;
+    --muted:   #667085;
+    --border:  #e3e8f0;
+    --shadow:  0 1px 3px rgba(16,24,40,0.06);
+    --shadow-hover: 0 10px 28px rgba(15,118,110,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: sans-serif;
+    line-height: 1.7;
+  }
+  a { color: var(--teal); text-decoration: none; }
+
+  header {
+    background: linear-gradient(160deg, #ffffff 0%, var(--bg2) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 4.5rem 5vw 3.5rem;
+    text-align: center;
+  }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-size: .72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: .8rem; justify-content: center; width: 100%;
+  }
+  .section-tag::before, .section-tag::after {
+    content: ''; display: inline-block; width: 22px; height: 1px; background: var(--teal);
+  }
+  header h1 {
+    font-size: 34px;
+    font-weight: normal;
+    margin-bottom: .9rem;
+  }
+  header p {
+    max-width: 660px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .subtitle {
+    margin-top: 1.6rem;
+    font-size: .95rem;
+    color: var(--muted);
+  }
+
+  .domain-sidebar { display: none; }
+
+  @media screen and (min-width: 1100px) {
+    .domain-sidebar {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      background: #faf9f7;
+      border-right: 1px solid #e8e6e1;
+      padding-top: 90px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      z-index: 900;
+    }
+    body.has-sidebar { padding-left: 220px; }
+  }
+  @media screen and (max-width: 1099px) {
+    body.has-sidebar { padding-left: 0 !important; }
+  }
+  .domain-sidebar-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    padding: 0 22px 10px 22px;
+    margin-top: 10px;
+  }
+  .domain-sidebar a {
+    display: block;
+    padding: 11px 22px;
+    font-size: 14px;
+    color: #444;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    line-height: 1.35;
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .domain-sidebar a:hover {
+    background: #f1efeb;
+    color: #222;
+  }
+  .domain-sidebar a.active {
+    background: #f3f0ec;
+    border-left-color: #ff6f61;
+    color: #222;
+    font-weight: 600;
+  }
+
+  main { max-width: 1180px; margin: 0 auto; padding: 3.5rem 5vw 5rem; }
+
+  .domain-group { margin-bottom: 3.2rem; }
+  .domain-heading {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: .7rem; margin-bottom: 1.4rem;
+  }
+  .domain-heading h2 {
+    font-size: 1.25rem; font-weight: 800; font-style: normal; color: #101828;
+  }
+  .count-pill {
+    font-size: .74rem; font-weight: 700; color: var(--teal);
+    background: rgba(15,118,110,0.08); border: 1px solid rgba(15,118,110,0.18);
+    padding: .28rem .75rem; border-radius: 999px; white-space: nowrap;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.3rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 1.6rem;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .project-card:hover {
+    border-color: var(--teal2);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
+  .project-tag {
+    font-size: .64rem; font-weight: 700; letter-spacing: .4px; text-transform: uppercase;
+    padding: .2rem .62rem; border-radius: 5px;
+    background: rgba(184,134,11,0.1); color: var(--gold); border: 1px solid rgba(184,134,11,0.25);
+  }
+  .project-tag.green { background: rgba(5,150,105,0.1); color: var(--green); border-color: rgba(5,150,105,0.25); }
+  .project-tag.cross  {
+    background: rgba(15,118,110,0.1); color: var(--teal); border-color: rgba(15,118,110,0.3);
+    font-weight: 800;
+  }
+  .project-tag.advised {
+    background: #eef2f8; color: #667085; border-color: #d0d5dd; font-weight: 600;
+  }
+  .project-tag.published {
+    background: var(--teal); color: #ffffff; border-color: var(--teal); font-weight: 800;
+  }
+  .project-card h3 {
+    font-size: 1rem; font-weight: 700; margin-bottom: .65rem; line-height: 1.4; color: #101828;
+  }
+  .project-card p {
+    font-size: .87rem; color: #475467; line-height: 1.65; margin-bottom: 0;
+  }
+  .project-meta {
+    font-size: .78rem; color: var(--muted); font-weight: 600;
+    margin-top: .8rem;
+  }
+  .project-meta strong { color: var(--text); }
+  .project-links {
+    display: flex; flex-wrap: wrap; gap: .6rem;
+    margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  }
+  .project-link {
+    font-size: .74rem; font-weight: 700; color: var(--teal);
+    border: 1px solid rgba(15,118,110,0.35); padding: .32rem .8rem; border-radius: 7px;
+    transition: background .2s, color .2s;
+  }
+  .project-link:hover { background: var(--teal); color: #ffffff; }
+
+  .domain-group.flagship .domain-heading { border-bottom-color: var(--teal); }
+  .domain-group.flagship .count-pill {
+    background: rgba(15,118,110,0.1); color: var(--teal2); border-color: rgba(15,118,110,0.25);
+  }
+
+  footer {
+    text-align: center; padding: 2rem 5vw; border-top: 1px solid var(--border);
+    font-size: .8rem; color: var(--muted);
+  }
+  footer span { color: var(--teal); font-weight: 600; }
+
+  @media (max-width: 640px) {
+    header { padding: 3.2rem 6vw 2.6rem; }
+  }
+</style>
+</head>
+<body class="has-sidebar">
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#teaching">Teaching</a></li>
+    <li><a href="MLE_projects.html">AI/ML Projects</a></li>
+    <li><a href="https://scholar.google.com/citations?user=k2jfnR0AAAAJ&hl=en">Publications</a></li>
+  </ul>
+</nav>
+
+<nav class="domain-sidebar">
+  <div class="domain-sidebar-title">Domains</div>
+  <a href="#sensing-spectroscopy---scientific-imaging">Sensing, Spectroscopy &amp; Scientific Imaging</a>
+  <a href="#aerospace---space-systems">Aerospace &amp; Space Systems</a>
+  <a href="#fluid-dynamics---cfd">Fluid Dynamics &amp; CFD</a>
+  <a href="#energy---thermal-systems">Energy &amp; Thermal Systems</a>
+  <a href="#materials---nuclear-engineering">Materials &amp; Nuclear Engineering</a>
+  <a href="#manufacturing---structural-engineering">Manufacturing &amp; Structural Engineering</a>
+  <a href="#robotics---autonomous-systems">Robotics &amp; Autonomous Systems</a>
+  <a href="#biomedical-engineering">Biomedical Engineering</a>
+  <a href="#scientific-computing---numerical-methods">Scientific Computing &amp; Numerical Methods</a>
+</nav>
+
+<header>
+  <h1>Machine Learning for Engineering</h1>
+  <p class="subtitle">Published research in AI-driven sensing and scientific imaging, plus selected highlights from class projects I've advised.</p>
+</header>
+
+<main>
+
+    <div class="domain-group flagship" id="sensing-spectroscopy---scientific-imaging">
+      <div class="domain-heading">
+        <h2>Sensing, Spectroscopy &amp; Scientific Imaging</h2>
+        <span class="count-pill">7 published works</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">Literature Review</span><span class="project-tag green">AI for Gas Sensing</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>Artificial Intelligence in Gas Sensing: A Review</h3>
+        <p>Surveys how machine learning, deep learning, and explainable AI are reshaping gas sensing, from spectral classification to real-time sensor deployment.</p>
+        <div class="project-meta"><strong>ACS Sensors</strong> (2025) &middot; 120+ citations</div>
+        <div class="project-links">
+          <a href="https://pubs.acs.org/doi/10.1021/acssensors.4c02272" class="project-link">Paper</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">Deep Learning</span><span class="project-tag green">Infrared Spectroscopy</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>Deep Learning for Gas Sensing via Infrared Spectroscopy</h3>
+        <p>Deep learning model trained on simulated absorbance spectra to classify up to three-component gas mixtures across a broad 400&ndash;4000&nbsp;cm&#8315;&sup1; range, highlighting the frequencies driving each prediction.</p>
+        <div class="project-meta"><strong>Sensors</strong> (2024) &middot; 40+ citations</div>
+        <div class="project-links">
+          <a href="https://doi.org/10.3390/s24061873" class="project-link">Paper</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">Deep Learning</span><span class="project-tag green">THz Spectroscopy</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>TSMC-Net: Deep-Learning Multigas Classification Using THz Absorption Spectra</h3>
+        <p>Deep learning architecture for terahertz absorption spectra (220&ndash;330&nbsp;GHz) that classifies gas mixtures with up to eight components and identifies the frequencies driving each prediction.</p>
+        <div class="project-meta"><strong>ACS Sensors</strong> (2023) &middot; 20+ citations</div>
+        <div class="project-links">
+          <a href="https://pubs.acs.org/doi/abs/10.1021/acssensors.2c02615" class="project-link">Paper</a>
+          <a href="https://github.com/arshadzahangirchowdhury/TSMC-Net" class="project-link">Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">1D CNN</span><span class="project-tag green">THz Spectroscopy</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>VOC-Net: Deep Learning Volatile Organic Compounds Classifier</h3>
+        <p>1D CNN trained on THz spectral signatures for rapid, selective identification of volatile organic compounds, where conventional analytical techniques often struggle.</p>
+        <div class="project-meta"><strong>Applied Sciences</strong> (2022) &middot; 20+ citations</div>
+        <div class="project-links">
+          <a href="https://www.mdpi.com/2076-3417/12/17/8447" class="project-link">Paper</a>
+          <a href="https://github.com/arshadzahangirchowdhury/VOC-Net" class="project-link">Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">Multiple ML Models</span><span class="project-tag green">THz Spectroscopy</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>Rotational Spectra Classification</h3>
+        <p>Links simulated and measured THz rotational spectra to improve robustness to noise and instrument variability in high-selectivity gas classification.</p>
+        <div class="project-meta"><strong>Applied Physics B</strong> (2021) &middot; 20+ citations</div>
+        <div class="project-links">
+          <a href="https://link.springer.com/article/10.1007%2Fs00340-021-07582-0" class="project-link">Paper</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">Support Vector Machines</span><span class="project-tag green">Infrared Spectroscopy</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>IR Spectra Classification</h3>
+        <p>SVM models trained on simulated absorbance data achieve reliable multigas IR classification, showing lightweight models can complement deep learning in resource-constrained sensing.</p>
+        <div class="project-meta"><strong>Applied Physics B</strong> (2022) &middot; 10+ citations</div>
+        <div class="project-links">
+          <a href="https://link.springer.com/article/10.1007/s00340-022-07879-8" class="project-link">Paper</a>
+          <a href="https://github.com/arshadzahangirchowdhury/SVM_IR_Classifier" class="project-link">Code</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag">Unsupervised Learning</span><span class="project-tag green">X-ray Fluorescence Imaging</span><span class="project-tag cross">Spectroscopic Sensing AI</span><span class="project-tag published">Published Research</span></div>
+        <h3>ROI-Finder: ML-Guided Region-of-Interest Scanning for X-ray Fluorescence Microscopy</h3>
+        <p>Unsupervised clustering pipeline that guides X-ray fluorescence microscopy scans toward chemically informative regions, enabling autonomous operation of synchrotron XRF systems.</p>
+        <div class="project-meta"><strong>Journal of Synchrotron Radiation</strong> (2022) &middot; 5+ citations</div>
+        <div class="project-links">
+          <a href="https://scripts.iucr.org/cgi-bin/paper?rv5165" class="project-link">Paper</a>
+          <a href="https://github.com/arshadzahangirchowdhury/ROI-Finder" class="project-link">Code</a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="aerospace---space-systems">
+      <div class="domain-heading">
+        <h2>Aerospace &amp; Space Systems</h2>
+        <span class="count-pill">5 projects</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Regression</span><span class="project-tag green">Surrogate Modeling</span><span class="project-tag cross">Aerospace AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Data-Driven Modeling of Heat Transfer in Cryogenic Propellant Storage</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Physics-Informed ML</span><span class="project-tag green">Orbital Dynamics</span><span class="project-tag cross">Aerospace AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Physics-Informed Learning for Space Object Trajectory Awareness</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Signal Processing</span><span class="project-tag green">Classification</span><span class="project-tag cross">Aerospace AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Sensor-Array Structural Health Monitoring for Composite Aerospace Structures</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Graph Neural Networks</span><span class="project-tag green">CFD Surrogate</span><span class="project-tag cross">Aerospace AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Graph Neural Networks for Fast Aerodynamic Flow Prediction</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Uncertainty Quantification</span><span class="project-tag green">Deep Learning</span><span class="project-tag cross">Aerospace AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Improving Fast Aerodynamic Simulations with Confidence Estimates</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="fluid-dynamics---cfd">
+      <div class="domain-heading">
+        <h2>Fluid Dynamics &amp; CFD</h2>
+        <span class="count-pill">6 projects</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Reinforcement Learning</span><span class="project-tag green">CFD</span><span class="project-tag cross">Computational Physics + ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Reinforcement Learning for Active Flow Control and Drag Reduction</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Sequence Modeling</span><span class="project-tag green">Reduced-Order Modeling</span><span class="project-tag cross">Computational Physics + ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Deep Learning to Forecast Evolving Fluid Flow Patterns</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Physics-Informed ML</span><span class="project-tag green">Fluid Dynamics</span><span class="project-tag cross">Computational Physics + ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Rebuilding Full Flow Fields from a Few Sensor Readings</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Turbulence Modeling</span><span class="project-tag green">Deep Learning</span><span class="project-tag cross">Computational Physics + ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Deep Learning to Model Turbulence Behavior in Fluids</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Computer Vision</span><span class="project-tag green">Experimental Fluid Dynamics</span><span class="project-tag cross">Computational Physics + ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Deep Learning for Fluid Vortex Localization from Experimental Imaging</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Generative Modeling</span><span class="project-tag green">Turbulence</span><span class="project-tag cross">Computational Physics + ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Generative AI for Modeling Complex Turbulent Flows</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="energy---thermal-systems">
+      <div class="domain-heading">
+        <h2>Energy &amp; Thermal Systems</h2>
+        <span class="count-pill">3 projects</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Bayesian Optimization</span><span class="project-tag green">Surrogate Modeling</span><span class="project-tag cross">Energy Analytics</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Surrogate-Based Optimization of Thermal-Energy System Efficiency</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Regression</span><span class="project-tag green">Renewable Energy</span><span class="project-tag cross">Energy Analytics</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Data-Driven Power Curve Modeling for Wind Turbine Performance</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Regression</span><span class="project-tag green">Thermal Engineering</span><span class="project-tag cross">Energy Analytics</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Machine Learning Surrogates for Convective Heat Transfer Prediction</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="materials---nuclear-engineering">
+      <div class="domain-heading">
+        <h2>Materials &amp; Nuclear Engineering</h2>
+        <span class="count-pill">3 projects</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Signal Classification</span><span class="project-tag green">Nuclear Engineering</span><span class="project-tag cross">Materials Informatics</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Deep Learning to Classify Radiation Detector Signals</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Classification</span><span class="project-tag green">Nuclear Physics</span><span class="project-tag cross">Materials Informatics</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Machine Learning Classification of Nuclear Isotope Stability</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Image Segmentation</span><span class="project-tag green">Materials Science</span><span class="project-tag cross">Materials Informatics</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Identifying Material Microstructures with Minimal Manual Labeling</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="manufacturing---structural-engineering">
+      <div class="domain-heading">
+        <h2>Manufacturing &amp; Structural Engineering</h2>
+        <span class="count-pill">3 projects</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Unsupervised Learning</span><span class="project-tag green">Manufacturing</span><span class="project-tag cross">Industrial AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Real-Time Anomaly Detection for Metal Additive Manufacturing Processes</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Hybrid Deep Learning</span><span class="project-tag green">Reliability Engineering</span><span class="project-tag cross">Industrial AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Hybrid Neural Architectures for Structural Fatigue Life Prediction</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Operator Learning</span><span class="project-tag green">Structural Systems</span><span class="project-tag cross">Industrial AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Fast AI Surrogates for Complex Thermal-Structural Systems</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="robotics---autonomous-systems">
+      <div class="domain-heading">
+        <h2>Robotics &amp; Autonomous Systems</h2>
+        <span class="count-pill">1 project</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Imitation Learning</span><span class="project-tag green">Robotics</span><span class="project-tag cross">Embodied AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Imitation Learning for Precision Robotic Manipulation</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="biomedical-engineering">
+      <div class="domain-heading">
+        <h2>Biomedical Engineering</h2>
+        <span class="count-pill">1 project</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Biosignal Processing</span><span class="project-tag green">Classification</span><span class="project-tag cross">Biomedical AI</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Machine Learning for Prosthetic Control from Biosignal Data</h3>
+      </div>
+      </div>
+    </div>
+
+    <div class="domain-group" id="scientific-computing---numerical-methods">
+      <div class="domain-heading">
+        <h2>Scientific Computing &amp; Numerical Methods</h2>
+        <span class="count-pill">4 projects</span>
+      </div>
+      <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Graph Neural Networks</span><span class="project-tag green">Numerical Methods</span><span class="project-tag cross">Scientific ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>AI-Accelerated Solvers for Large Systems of Equations</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Neural ODEs</span><span class="project-tag green">Dynamical Systems</span><span class="project-tag cross">Scientific ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Continuous-Time Neural Architectures for Dynamical System Modeling</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Neural ODEs</span><span class="project-tag green">System Identification</span><span class="project-tag cross">Scientific ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>Learning a System's Behavior Directly from Its Data</h3>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tags"><span class="project-tag ">Training Methodology</span><span class="project-tag green">Surrogate Modeling</span><span class="project-tag cross">Scientific ML</span><span class="project-tag advised">Advised Student Class Project</span></div>
+        <h3>More Accurate AI Surrogates via Gradient-Aware Training</h3>
+      </div>
+      </div>
+    </div>
+</main>
+
+<footer>
+  <p><span>Machine Learning Engineering</span> &nbsp;·&nbsp; Selected Project Highlights</p>
+</footer>
+
+<script>
+  (function() {
+    var links = document.querySelectorAll('.domain-sidebar a');
+    var sections = [];
+    links.forEach(function(a) {
+      var sec = document.getElementById(a.getAttribute('href').slice(1));
+      if (sec) sections.push({ link: a, sec: sec });
+    });
+    function spy() {
+      var pos = window.scrollY + 120;
+      var current = sections[0];
+      sections.forEach(function(s) {
+        if (s.sec.offsetTop <= pos) current = s;
+      });
+      sections.forEach(function(s) {
+        s.link.classList.toggle('active', s === current);
+      });
+    }
+    window.addEventListener('scroll', spy);
+    spy();
+  })();
+</script>
+
+</body>
+</html>
