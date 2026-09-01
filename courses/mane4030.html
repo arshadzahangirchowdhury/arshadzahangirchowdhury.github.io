@@ -183,17 +183,17 @@
         <button class="preset-chip" data-preset="zero">Clear</button>
       </div>
 
-      <div class="kicker" style="margin-top:4px; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Stress tensor &sigma;<sub>ij</sub> &mdash; enter the six independent components</div>
+      <div class="kicker" style="margin-top:4px; font-size:12px; font-weight:bold; text-transform:uppercase; letter-spacing:0.08em; color:#999;">Stress tensor <span style="text-transform:none;">&sigma;<sub>ij</sub></span> &mdash; enter the six independent components</div>
       <div class="tensor-grid">
-        <div class="tcell"><label>&sigma;<sub>xx</sub></label><input type="number" step="any" id="sxx" value="-100"></div>
-        <div class="tcell"><label>&tau;<sub>xy</sub></label><input type="number" step="any" id="sxy" value="50"></div>
-        <div class="tcell"><label>&tau;<sub>xz</sub></label><input type="number" step="any" id="sxz" value="100"></div>
-        <div class="tcell mirror"><label>&tau;<sub>yx</sub></label><input type="text" id="m_yx" value="50" disabled title="Symmetry: equal to τxy"></div>
-        <div class="tcell"><label>&sigma;<sub>yy</sub></label><input type="number" step="any" id="syy" value="-200"></div>
-        <div class="tcell"><label>&tau;<sub>yz</sub></label><input type="number" step="any" id="syz" value="150"></div>
-        <div class="tcell mirror"><label>&tau;<sub>zx</sub></label><input type="text" id="m_zx" value="100" disabled title="Symmetry: equal to τxz"></div>
-        <div class="tcell mirror"><label>&tau;<sub>zy</sub></label><input type="text" id="m_zy" value="150" disabled title="Symmetry: equal to τyz"></div>
-        <div class="tcell"><label>&sigma;<sub>zz</sub></label><input type="number" step="any" id="szz" value="-150"></div>
+        <div class="tcell"><label>&sigma;<sub>xx</sub></label><input type="number" step="any" id="sxx" value="60"></div>
+        <div class="tcell"><label>&tau;<sub>xy</sub></label><input type="number" step="any" id="sxy" value="40"></div>
+        <div class="tcell"><label>&tau;<sub>xz</sub></label><input type="number" step="any" id="sxz" value="-15"></div>
+        <div class="tcell mirror"><label>&tau;<sub>yx</sub></label><input type="text" id="m_yx" value="40" disabled title="Symmetry: equal to τxy"></div>
+        <div class="tcell"><label>&sigma;<sub>yy</sub></label><input type="number" step="any" id="syy" value="-90"></div>
+        <div class="tcell"><label>&tau;<sub>yz</sub></label><input type="number" step="any" id="syz" value="25"></div>
+        <div class="tcell mirror"><label>&tau;<sub>zx</sub></label><input type="text" id="m_zx" value="-15" disabled title="Symmetry: equal to τxz"></div>
+        <div class="tcell mirror"><label>&tau;<sub>zy</sub></label><input type="text" id="m_zy" value="25" disabled title="Symmetry: equal to τyz"></div>
+        <div class="tcell"><label>&sigma;<sub>zz</sub></label><input type="number" step="any" id="szz" value="35"></div>
       </div>
       <p class="units-note">Grayed cells fill automatically from symmetry (&tau;<sub>ij</sub> = &tau;<sub>ji</sub>). Units: any consistent stress unit (MPa shown); results carry the same unit. Everything updates live.</p>
 
